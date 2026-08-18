@@ -2,10 +2,13 @@
 //
 // [ 시트 준비 방법 ]
 // 1. 구글 시트를 만들고 1행에 아래 머리글을 그대로 입력한다.
-//      제목 | 내용 | 작성일 | 팝업 | 시작일 | 종료일
+//      제목 | 내용 | 작성일 | 팝업 | 시작일 | 종료일 | 첨부
 //    - 작성일/시작일/종료일 : 2026-09-20 형식
 //    - 팝업 : 메인에 띄울 공지만 Y (비워두면 목록에만 노출)
 //    - 시작일/종료일 : 비워두면 기간 제한 없이 계속 노출
+//    - 첨부 : 구글 드라이브 등에 올린 파일 주소. 여러 개면 세미콜론(;)으로 구분한다.
+//            "안전관리 지침.pdf|https://..." 처럼 앞에 이름을 적으면 그 이름으로 표시된다.
+//            드라이브 파일은 공유 설정을 '링크가 있는 모든 사용자'로 해야 방문자가 열 수 있다.
 // 2. 파일 > 공유 > 웹에 게시 > 해당 시트 선택, 형식은 '쉼표로 구분된 값(.csv)'
 // 3. 나온 주소를 아래 NOTICE_CSV 에 붙여넣는다.
 const NOTICE_CSV = '';   // 예: https://docs.google.com/spreadsheets/d/e/2PACX-.../pub?gid=0&single=true&output=csv
@@ -36,6 +39,36 @@ function toRecords(rows) {
   return rows.slice(1)
     .filter(r => r.some(c => c.trim()))
     .map(r => Object.fromEntries(head.map((h, i) => [h, (r[i] || '').trim()])));
+}
+
+// 첨부 셀 → [{name, url}] . 이름을 안 적으면 '첨부파일'로 표시한다
+function parseAttachments(cell) {
+  if (!cell) return [];
+  return cell.split(';').map(s => s.trim()).filter(Boolean).map(item => {
+    const at = item.lastIndexOf('|');
+    const name = at > -1 ? item.slice(0, at).trim() : '';
+    const url = (at > -1 ? item.slice(at + 1) : item).trim();
+    return { name: name || '첨부파일', url };
+  }).filter(a => /^https?:\/\//.test(a.url));
+}
+
+// 첨부 목록 DOM. 링크 문자열은 시트에서 오므로 textContent/href 로만 넣는다
+function attachmentList(cell) {
+  const files = parseAttachments(cell);
+  if (!files.length) return null;
+  const ul = document.createElement('ul');
+  ul.className = 'attach';
+  files.forEach(f => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = f.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.textContent = f.name;
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+  return ul;
 }
 
 const today = () => new Date().toLocaleDateString('sv-SE');   // YYYY-MM-DD
@@ -89,7 +122,11 @@ async function initNoticeList() {
     detail.className = 'detail';
     const cell = document.createElement('td');
     cell.colSpan = 3;
-    cell.textContent = n.내용;
+    const body = document.createElement('p');
+    body.textContent = n.내용;
+    cell.appendChild(body);
+    const files = attachmentList(n.첨부);
+    if (files) cell.appendChild(files);
     detail.appendChild(cell);
 
     btn.onclick = () => detail.classList.toggle('on');
@@ -117,6 +154,8 @@ async function initNoticePopup() {
       + '<button data-close class="btn">닫기</button></div>';
     dlg.querySelector('h3').textContent = n.제목;
     dlg.querySelector('.pop-body').textContent = n.내용;
+    const popFiles = attachmentList(n.첨부);
+    if (popFiles) dlg.querySelector('.pop-body').appendChild(popFiles);
 
     const skip = dlg.querySelector('.pop-foot input');
     dlg.querySelectorAll('[data-close]').forEach(b => b.onclick = () => {
@@ -140,6 +179,12 @@ function noticeSelfTest() {
   console.assert(!inRange({ 시작일: '2026-07-01' }, '2026-06-01'), '시작 전');
   console.assert(!inRange({ 종료일: '2026-05-01' }, '2026-06-01'), '종료 후');
   console.assert(inRange({ 시작일: '', 종료일: '' }, '2026-06-01'), '기간 없음');
+  const at = parseAttachments('지침.pdf|https://a.com/x.pdf ; https://b.com/y.zip');
+  console.assert(at.length === 2, '첨부 개수', at);
+  console.assert(at[0].name === '지침.pdf' && at[0].url === 'https://a.com/x.pdf', '이름|링크', at[0]);
+  console.assert(at[1].name === '첨부파일', '이름 생략', at[1]);
+  console.assert(parseAttachments('javascript:alert(1)').length === 0, 'http 아닌 주소는 제외');
+  console.assert(parseAttachments('').length === 0, '빈 첨부');
   console.log('notice selftest 완료');
 }
 if (location.search.includes('selftest')) noticeSelfTest();
