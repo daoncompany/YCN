@@ -111,7 +111,7 @@ h4{font-size:20px;letter-spacing:-.01em}
 .panel .shot{aspect-ratio:16/10;background:#fafafa;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--dim)}
 
 /* ── 3SZONE ─────────────────────────────── */
-.zone{background:#000 url(images/3s-bg.jpg) center/cover no-repeat;color:#fff;margin:120px 0;padding:110px 0}
+.zone{background:#000 url(../images/3s-bg.jpg) center/cover no-repeat;color:#fff;margin:120px 0;padding:110px 0}
 .zone-in{display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
 .zone-logo{width:290px;margin-bottom:24px}
 .zone p{color:rgba(255,255,255,.72);margin-bottom:30px;font-size:16px}
@@ -316,3 +316,18 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:46px 0;font-s
   .board th:nth-child(1),.board td:nth-child(1),
   .board th:nth-child(4),.board td:nth-child(4){display:none}
 }
+
+/* ── 공지사항 목록 ─────────────────────────── */
+.board td.subject button{width:100%;text-align:left;font-size:14px;font-weight:500;padding:0}
+.board td.subject button:hover{color:var(--blue);font-weight:700}
+.board tr.detail{display:none}
+.board tr.detail.on{display:table-row}
+.board tr.detail td{padding:26px 22px;text-align:left;font-size:14px;line-height:1.8;
+  color:var(--dim);background:rgba(17,17,17,.03);white-space:pre-wrap}
+
+/* ── 공지 팝업 ─────────────────────────────── */
+.pop-notice .pop-body{white-space:pre-wrap;color:var(--black);min-height:80px}
+.pop-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:16px 30px;border-top:1px solid var(--line)}
+.pop-foot label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--dim);cursor:pointer}
+.pop-foot .btn{height:40px;padding:0 22px}
