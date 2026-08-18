@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오시는 길 | (주)와이씨앤</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div data-include="partials/header.html"></div>
+
+<section class="sub-visual">
+  <div class="wrap">
+    <h1>CONTACT</h1>
+    <p class="tagline">Get in Touch with YCN</p>
+    <div class="sub-nav">
+      <p class="crumb"><a href="index.html">HOME</a><i>&#8250;</i>CONTACT<i>&#8250;</i><b>오시는 길</b></p>
+      <div class="page-select">
+        <select aria-label="섹션 이동">
+        <option value="about.html">ABOUT</option>
+        <option value="system-attendance.html">SYSTEM</option>
+        <option value="3szone.html">3SZONE</option>
+        <option value="notice.html" selected>CONTACT</option>
+        </select>
+        <select aria-label="페이지 이동">
+        <option value="notice.html">공지사항</option>
+        <option value="location.html" selected>오시는 길</option>
+        <option value="inquiry.html">온라인 문의</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="pills wrap">
+      <a href="notice.html">공지사항</a>
+      <a href="location.html" class="on">오시는 길</a>
+      <a href="inquiry.html">온라인 문의</a>
+</nav>
+
+<section class="sub-body contact wrap">
+  <div class="sub-head">
+    <span class="kicker">Location</span>
+    <h2>오시는 길</h2>
+    <p>(주)와이씨앤을 찾아오시는 길을 안내해 드립니다.</p>
+  </div>
+  <div class="map">
+    <div id="daumRoughmapContainer1662599661679" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+  </div>
+  <dl class="loc">
+    <div><dt>ADDRESS</dt><dd>경기도 의왕시 이미로 40(포일동 653)<br>인덕원 IT밸리 B동 807호 (16006)</dd></div>
+    <div><dt>TEL</dt><dd>02-882-9977</dd></div>
+    <div><dt>FAX</dt><dd>02-876-5482</dd></div>
+    <div><dt>EMAIL</dt><dd><a href="mailto:sales@ycnet.co.kr">sales@ycnet.co.kr</a></dd></div>
+  </dl>
+</section>
+
+<div data-include="partials/footer.html"></div>
+
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+<script>
+new daum.roughmap.Lander({ timestamp: "1662599661679", key: "2bnoo", mapWidth: "1200", mapHeight: "440" }).render();
+</script>
+
+<script src="js/script.js"></script>
+</body>
+</html>
