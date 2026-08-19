@@ -391,3 +391,6 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:46px 0;font-s
   .contact-cards div{flex-direction:column;gap:6px}
   .contact-cards b::after{display:none}
 }
+
+/* ── 게시판 하단 버튼 ──────────────────────── */
+.board-foot{display:flex;justify-content:flex-end;margin-top:28px}
