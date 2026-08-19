@@ -2,11 +2,12 @@
 //
 // [ 시트 준비 방법 ]
 // 1. 구글 시트 1행에 아래 머리글을 그대로 둔다.
-//      제목 | 내용 | 작성일 | 팝업 | 시작일 | 종료일 | 첨부
+//      제목 | 내용 | 작성일 | 작성자 | 팝업 | 시작일 | 종료일 | 이미지 | 첨부
 //    - 작성일/시작일/종료일 : 2026-09-20 형식
 //    - 팝업 : 메인에 띄울 공지만 Y (비워두면 목록에만 노출)
 //    - 시작일/종료일 : 비워두면 기간 제한 없이 계속 노출
-//    - 첨부 : 구글 드라이브 등에 올린 파일 주소. 여러 개면 세미콜론(;)으로 구분한다.
+//    - 이미지 : 본문에 함께 보여줄 이미지 주소. 여러 개면 세미콜론(;)으로 구분한다.
+//    - 첨부 : 내려받을 파일 주소. 여러 개면 세미콜론(;)으로 구분한다.
 //            "안전관리 지침.pdf|https://..." 처럼 앞에 이름을 적으면 그 이름으로 표시된다.
 //            드라이브 파일은 공유 설정을 '링크가 있는 모든 사용자'로 해야 방문자가 열 수 있다.
 // 2. 공유 설정을 '링크가 있는 모든 사용자 - 뷰어' 로 둔다. (웹에 게시는 하지 않아도 된다)
@@ -45,7 +46,7 @@ function toRecords(rows) {
 // 첨부 셀 → [{name, url}] . 이름을 안 적으면 '첨부파일'로 표시한다
 function parseAttachments(cell) {
   if (!cell) return [];
-  return cell.split(';').map(s => s.trim()).filter(Boolean).map(item => {
+  return cell.split(/[;\n]/).map(s => s.trim()).filter(Boolean).map(item => {
     const at = item.lastIndexOf('|');
     const name = at > -1 ? item.slice(0, at).trim() : '';
     const url = (at > -1 ? item.slice(at + 1) : item).trim();
@@ -84,6 +85,22 @@ function normalizeDate(v) {
   return t;
 }
 
+// 이미지 목록 DOM
+function imageList(cell) {
+  const files = parseAttachments(cell);
+  if (!files.length) return null;
+  const box = document.createElement('div');
+  box.className = 'notice-img';
+  files.forEach(f => {
+    const img = document.createElement('img');
+    img.src = f.url;
+    img.alt = f.name === '첨부파일' ? '' : f.name;
+    img.loading = 'lazy';
+    box.appendChild(img);
+  });
+  return box;
+}
+
 const today = () => new Date().toLocaleDateString('sv-SE');   // YYYY-MM-DD
 
 // 날짜 문자열은 YYYY-MM-DD 고정이라 문자열 비교로 충분하다
@@ -118,7 +135,7 @@ async function initNoticeList() {
 
   const list = await loadNotices();
   if (!list.length) {
-    tbody.innerHTML = '<tr><td colspan="3" class="empty">등록된 게시물이 없습니다.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="4" class="empty">등록된 게시물이 없습니다.</td></tr>';
     return;
   }
 
@@ -133,17 +150,22 @@ async function initNoticeList() {
     btn.type = 'button';
     btn.textContent = n.제목;
     subject.appendChild(btn);
+    const writer = document.createElement('td');
+    writer.className = 'writer';
+    writer.textContent = n.작성자 || 'YCN';
     const date = document.createElement('td');
     date.textContent = n.작성일;
-    tr.append(no, subject, date);
+    tr.append(no, subject, writer, date);
 
     const detail = document.createElement('tr');
     detail.className = 'detail';
     const cell = document.createElement('td');
-    cell.colSpan = 3;
+    cell.colSpan = 4;
     const body = document.createElement('p');
     body.textContent = n.내용;
     cell.appendChild(body);
+    const pics = imageList(n.이미지);
+    if (pics) cell.appendChild(pics);
     const files = attachmentList(n.첨부);
     if (files) cell.appendChild(files);
     detail.appendChild(cell);
@@ -173,6 +195,8 @@ async function initNoticePopup() {
       + '<button data-close class="btn">닫기</button></div>';
     dlg.querySelector('h3').textContent = n.제목;
     dlg.querySelector('.pop-body').textContent = n.내용;
+    const popPics = imageList(n.이미지);
+    if (popPics) dlg.querySelector('.pop-body').appendChild(popPics);
     const popFiles = attachmentList(n.첨부);
     if (popFiles) dlg.querySelector('.pop-body').appendChild(popFiles);
 
@@ -209,6 +233,7 @@ function noticeSelfTest() {
   console.assert(normalizeDate('2026/9/5') === '2026-09-05', '슬래시 표기');
   console.assert(normalizeDate('Date(2026,8,20)') === '2026-09-20', 'gviz 날짜형');
   console.assert(normalizeDate('') === '', '빈 날짜');
+  console.assert(parseAttachments('https://a.com/1.png\nhttps://a.com/2.png').length === 2, '줄바꿈 구분');
   console.log('notice selftest 완료');
 }
 if (location.search.includes('selftest')) noticeSelfTest();

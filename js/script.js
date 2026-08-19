@@ -65,4 +65,5 @@ includePartials().then(() => {
   initTabs();
   initPageSelect();
   if (typeof initNoticeList === 'function') { initNoticeList(); initNoticePopup(); }
+  if (typeof initAdminForm === 'function') initAdminForm();
 });
