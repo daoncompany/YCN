@@ -4,7 +4,7 @@
 async function includePartials() {
   const slots = [...document.querySelectorAll('[data-include]')];
   await Promise.all(slots.map(async el => {
-    const res = await fetch(el.dataset.include);
+    const res = await fetch(el.dataset.include, { cache: 'no-cache' });
     el.outerHTML = await res.text();
   }));
 }
