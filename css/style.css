@@ -111,21 +111,22 @@ h4{font-size:20px;letter-spacing:-.01em}
 .panel .shot{aspect-ratio:16/10;background:#fafafa;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--dim)}
 
 /* ── 3SZONE ─────────────────────────────── */
-.zone{background:#000 url(../images/3s-bg.jpg) center/cover no-repeat;color:#fff;margin:120px 0;padding:110px 0}
-.zone-in{display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
-.zone-logo{width:290px;margin-bottom:24px}
-.zone p{color:rgba(255,255,255,.72);margin-bottom:30px;font-size:16px}
-.zone .btn-ghost{color:#fff;border-color:rgba(255,255,255,.55)}
+.zone{position:relative;background:var(--black);color:#fff;margin:120px 0;padding:120px 0;overflow:hidden}
+/* 단색 위에 아주 옅은 글로우만. 심플하게 */
+.zone::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(90% 120% at 78% 30%, rgba(0,47,115,.75) 0%, rgba(17,17,17,0) 62%)}
+.zone-in{position:relative;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
+.zone-logo{width:236px;margin-bottom:24px}
+.zone p{color:rgba(255,255,255,.66);margin-bottom:32px;font-size:15px}
+.zone .btn-ghost{color:#fff;border-color:rgba(255,255,255,.45)}
 .zone .btn-ghost:hover{background:#fff;color:var(--black);border-color:#fff}
-.zone-mark{width:320px}
-.zone-icons{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;margin-top:64px;padding-top:44px;border-top:1px solid rgba(255,255,255,.14)}
+.zone-mark{width:280px}
+.zone-icons{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:16px;
+  margin-top:76px;padding-top:44px;border-top:1px solid rgba(255,255,255,.14)}
 .zone-icons li{text-align:center}
-.zone-icons figure{width:76px;height:76px;margin:0 auto 14px;border-radius:50%;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);
-  display:flex;align-items:center;justify-content:center}
-.zone-icons img{width:40px;height:40px;object-fit:contain;
-  filter:brightness(0) invert(1)}
-.zone-icons span{display:block;font-size:12.5px;font-weight:500;color:#fff;line-height:1.5}
+.zone-icons img{width:34px;height:34px;object-fit:contain;margin:0 auto 14px;
+  filter:brightness(0) invert(1);opacity:.9}
+.zone-icons span{display:block;font-size:12.5px;font-weight:500;color:rgba(255,255,255,.72);line-height:1.5}
 
 /* ── PARTNER ────────────────────────────── */
 .partner{padding:120px 0}
