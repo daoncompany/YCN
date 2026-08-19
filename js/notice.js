@@ -187,57 +187,56 @@ async function initNoticeList() {
   });
 }
 
-// 이미지가 있는 팝업은 원본 폭에 맞춰 넓힌다 (좌우 여백 60 + 스크롤바 여유 30)
-function sizeToImages(dlg, box) {
-  const imgs = [...box.querySelectorAll('img')];
-  if (!imgs.length) return;
-  const apply = () => {
-    const w = Math.max(...imgs.map(i => i.naturalWidth || 0));
-    if (w > 0) dlg.style.maxWidth = Math.min(w + 90, innerWidth * 0.9) + 'px';
+// ── 메인 팝업 (index.html) ─────────────────────────────────
+// 공지 하나를 <dialog> 로 만든다. 아직 열지는 않는다.
+// onDone 은 닫힌 뒤 다음 공지를 띄우는 콜백 (close 이벤트가 안 오는 브라우저가 있어 직접 호출한다)
+function buildNoticeDialog(n, day, key, onDone) {
+  const dlg = document.createElement('dialog');
+  dlg.className = 'pop-notice';
+  dlg.innerHTML = '<div class="pop-head"><h3></h3><button data-close aria-label="닫기">×</button></div>'
+    + '<div class="pop-body"></div>'
+    + '<div class="pop-foot"><label><input type="checkbox"> 오늘 하루 보지 않기</label>'
+    + '<button data-close class="btn">닫기</button></div>';
+  dlg.querySelector('h3').textContent = n.제목;
+  const body = dlg.querySelector('.pop-body');
+  body.textContent = n.내용;
+
+  const pics = imageList(n.이미지);
+  if (pics) { body.appendChild(pics); dlg.classList.add('has-img'); }
+  const files = attachmentList(n.첨부);
+  if (files) body.appendChild(files);
+
+  const skip = dlg.querySelector('.pop-foot input');
+  const done = () => {
+    if (skip.checked) localStorage.setItem(key, day);
+    dlg.close();
+    onDone();
   };
-  let left = imgs.length;
-  imgs.forEach(i => {
-    if (i.complete && i.naturalWidth) { if (--left === 0) apply(); }
-    else i.addEventListener('load', () => { if (--left === 0) apply(); }, { once: true });
-  });
+  dlg.querySelectorAll('[data-close]').forEach(b => b.onclick = done);
+  dlg.addEventListener('cancel', e => { e.preventDefault(); done(); });   // ESC
+  return dlg;
 }
 
-// ── 메인 팝업 (index.html) ─────────────────────────────────
 async function initNoticePopup() {
   if (!document.querySelector('.hero')) return;   // 메인에서만
 
   const day = today();
+  const day_ = day;
   const list = (await loadNotices())
-    .filter(n => n.팝업.toUpperCase() === 'Y' && inRange(n, day));
+    .filter(n => n.팝업.toUpperCase() === 'Y' && inRange(n, day_))
+    .filter(n => localStorage.getItem('ycn-notice-' + n.작성일 + '-' + n.제목) !== day_);
+
+  // 여러 건이면 겹쳐 쌓지 않고 하나 닫을 때마다 다음 것을 띄운다
+  let i = 0;
+  const queue = [];
+  const showNext = () => { if (i < queue.length) queue[i++].showModal(); };
 
   list.forEach(n => {
-    const key = 'ycn-notice-' + n.작성일 + '-' + n.제목;
-    if (localStorage.getItem(key) === day) return;   // 오늘 하루 보지 않기
-
-    const dlg = document.createElement('dialog');
-    dlg.className = 'pop-notice';
-    dlg.innerHTML = '<div class="pop-head"><h3></h3><button data-close aria-label="닫기">×</button></div>'
-      + '<div class="pop-body"></div>'
-      + '<div class="pop-foot"><label><input type="checkbox"> 오늘 하루 보지 않기</label>'
-      + '<button data-close class="btn">닫기</button></div>';
-    dlg.querySelector('h3').textContent = n.제목;
-    dlg.querySelector('.pop-body').textContent = n.내용;
-    const popPics = imageList(n.이미지);
-    if (popPics) {
-      dlg.querySelector('.pop-body').appendChild(popPics);
-      sizeToImages(dlg, popPics);
-    }
-    const popFiles = attachmentList(n.첨부);
-    if (popFiles) dlg.querySelector('.pop-body').appendChild(popFiles);
-
-    const skip = dlg.querySelector('.pop-foot input');
-    dlg.querySelectorAll('[data-close]').forEach(b => b.onclick = () => {
-      if (skip.checked) localStorage.setItem(key, day);
-      dlg.close();
-    });
+    const dlg = buildNoticeDialog(n, day_, 'ycn-notice-' + n.작성일 + '-' + n.제목, showNext);
     document.body.appendChild(dlg);
-    dlg.showModal();
+    queue.push(dlg);
   });
+  showNext();
 }
 
 // ── 자체 점검 : ?selftest=1 로 열면 콘솔에서 확인 ───────────
