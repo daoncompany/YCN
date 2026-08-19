@@ -1,7 +1,7 @@
 // 공지사항 — 구글 시트를 그대로 데이터 소스로 쓴다 (백엔드·API 키 없음)
 //
 // [ 시트 준비 방법 ]
-// 1. 구글 시트를 만들고 1행에 아래 머리글을 그대로 입력한다.
+// 1. 구글 시트 1행에 아래 머리글을 그대로 둔다.
 //      제목 | 내용 | 작성일 | 팝업 | 시작일 | 종료일 | 첨부
 //    - 작성일/시작일/종료일 : 2026-09-20 형식
 //    - 팝업 : 메인에 띄울 공지만 Y (비워두면 목록에만 노출)
@@ -9,9 +9,10 @@
 //    - 첨부 : 구글 드라이브 등에 올린 파일 주소. 여러 개면 세미콜론(;)으로 구분한다.
 //            "안전관리 지침.pdf|https://..." 처럼 앞에 이름을 적으면 그 이름으로 표시된다.
 //            드라이브 파일은 공유 설정을 '링크가 있는 모든 사용자'로 해야 방문자가 열 수 있다.
-// 2. 파일 > 공유 > 웹에 게시 > 해당 시트 선택, 형식은 '쉼표로 구분된 값(.csv)'
-// 3. 나온 주소를 아래 NOTICE_CSV 에 붙여넣는다.
-const NOTICE_CSV = '';   // 예: https://docs.google.com/spreadsheets/d/e/2PACX-.../pub?gid=0&single=true&output=csv
+// 2. 공유 설정을 '링크가 있는 모든 사용자 - 뷰어' 로 둔다. (웹에 게시는 하지 않아도 된다)
+// 3. 시트 주소의 문서 ID 부분만 아래에 넣는다.
+const SHEET_ID = '1ST7W5gHOVJ5cD_2IdonuZmkpidpP-StXhhP6FHxy_V8';
+const NOTICE_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
 
 // ── CSV 파싱 (따옴표 안의 쉼표·줄바꿈까지 처리) ──────────────
 function parseCSV(text) {
@@ -71,6 +72,18 @@ function attachmentList(cell) {
   return ul;
 }
 
+// 시트 날짜 셀 → YYYY-MM-DD . 서식이 날짜형이면 로케일 표기로 나오기도 해서 한 번 정규화한다
+function normalizeDate(v) {
+  if (!v) return '';
+  const t = v.trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(t)) return t;
+  const m = t.match(/^Date\((\d+),(\d+),(\d+)/);      // gviz 날짜형 표기
+  if (m) return `${m[1]}-${String(+m[2] + 1).padStart(2, '0')}-${m[3].padStart(2, '0')}`;
+  const n = t.match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/); // 2026. 9. 20 / 2026/9/20
+  if (n) return `${n[1]}-${n[2].padStart(2, '0')}-${n[3].padStart(2, '0')}`;
+  return t;
+}
+
 const today = () => new Date().toLocaleDateString('sv-SE');   // YYYY-MM-DD
 
 // 날짜 문자열은 YYYY-MM-DD 고정이라 문자열 비교로 충분하다
@@ -85,7 +98,13 @@ async function loadNotices() {
   try {
     const res = await fetch(NOTICE_CSV);
     if (!res.ok) throw new Error(res.status);
-    return toRecords(parseCSV(await res.text()));
+    const list = toRecords(parseCSV(await res.text()));
+    list.forEach(n => {
+      n.작성일 = normalizeDate(n.작성일);
+      n.시작일 = normalizeDate(n.시작일);
+      n.종료일 = normalizeDate(n.종료일);
+    });
+    return list;
   } catch (e) {
     console.warn('공지사항을 불러오지 못했습니다:', e);
     return [];
@@ -185,6 +204,11 @@ function noticeSelfTest() {
   console.assert(at[1].name === '첨부파일', '이름 생략', at[1]);
   console.assert(parseAttachments('javascript:alert(1)').length === 0, 'http 아닌 주소는 제외');
   console.assert(parseAttachments('').length === 0, '빈 첨부');
+  console.assert(normalizeDate('2026-09-20') === '2026-09-20', '이미 정규형');
+  console.assert(normalizeDate('2026. 9. 20') === '2026-09-20', '로케일 표기');
+  console.assert(normalizeDate('2026/9/5') === '2026-09-05', '슬래시 표기');
+  console.assert(normalizeDate('Date(2026,8,20)') === '2026-09-20', 'gviz 날짜형');
+  console.assert(normalizeDate('') === '', '빈 날짜');
   console.log('notice selftest 완료');
 }
 if (location.search.includes('selftest')) noticeSelfTest();
