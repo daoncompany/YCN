@@ -314,7 +314,7 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:46px 0;font-s
   .form .row{grid-template-columns:1fr;gap:8px;padding:16px 0}
   .form label{padding-top:0}
   .board th:nth-child(1),.board td:nth-child(1),
-  .board th:nth-child(4),.board td:nth-child(4){display:none}
+  .board th:nth-child(3),.board td.writer{display:none}
 }
 
 /* ── 공지사항 목록 ─────────────────────────── */
@@ -340,3 +340,23 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:46px 0;font-s
 .attach a::before{content:'';width:14px;height:14px;flex:none;
   border:1.5px solid currentColor;border-top-width:5px}
 .attach a:hover{text-decoration:underline}
+
+/* ── 공지 본문 이미지 ──────────────────────── */
+.notice-img{margin-top:18px}
+.notice-img img{width:100%;max-width:640px;border:1px solid var(--line);margin-bottom:10px}
+.board .writer{color:var(--dim);font-size:13.5px}
+
+/* ── 글쓰기 폼 보강 ────────────────────────── */
+.form .hint{margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--dim)}
+.form .check{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding-top:12px}
+.form .range{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.form .range input{width:auto;flex:1;min-width:150px}
+.form .range span{color:var(--dim)}
+.form .range .hint{width:100%;margin-top:0}
+.form input[type=file]{padding:10px 0;border:0}
+.form input[readonly]{background:rgba(17,17,17,.04);color:var(--dim)}
+.form-msg{margin:26px 0 0;text-align:center;font-size:14px;font-weight:700;min-height:22px}
+.form-msg.ok{color:var(--blue)}
+.form-msg.err{color:#111}
+.form .submit{margin-top:20px}
+.form button[disabled]{opacity:.5;cursor:default}
