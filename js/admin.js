@@ -2,7 +2,8 @@
 //
 // apps-script/Code.gs 를 시트에 붙여넣고 '웹 앱'으로 배포한 뒤,
 // 발급된 주소(https://script.google.com/macros/s/.../exec)를 아래에 넣는다.
-const NOTICE_API = '';
+// 스크립트를 고친 뒤에는 '배포 관리 > 편집 > 새 버전'으로 다시 배포해야 반영된다.
+const NOTICE_API = 'https://script.google.com/macros/s/AKfycbyWE6Ngwwyfi0jVJylSDeNSiwXkMultR9mkRA5gBNrAV82jhj70YUwVIRH0s33N9hd3rQ/exec';
 
 const MAX_FILE_MB = 8;
 
