@@ -91,10 +91,10 @@ function driveFileId(url) {
   return m ? m[1] : '';
 }
 
-// 드라이브 주소는 <img> 로 직접 안 뜨므로(uc?export=view 는 차단됨) thumbnail 형식으로 바꾼다
+// 드라이브 주소는 <img> 로 직접 안 뜨므로(uc?export=view 는 차단됨) 원본을 주는 형식으로 바꾼다
 function imageSrc(url) {
   const id = driveFileId(url);
-  return id ? 'https://drive.google.com/thumbnail?id=' + id + '&sz=w1600' : url;
+  return id ? 'https://lh3.googleusercontent.com/d/' + id : url;
 }
 
 // 이미지 목록 DOM
@@ -187,6 +187,21 @@ async function initNoticeList() {
   });
 }
 
+// 이미지가 있는 팝업은 원본 폭에 맞춰 넓힌다 (좌우 여백 60 + 스크롤바 여유 30)
+function sizeToImages(dlg, box) {
+  const imgs = [...box.querySelectorAll('img')];
+  if (!imgs.length) return;
+  const apply = () => {
+    const w = Math.max(...imgs.map(i => i.naturalWidth || 0));
+    if (w > 0) dlg.style.maxWidth = Math.min(w + 90, innerWidth * 0.9) + 'px';
+  };
+  let left = imgs.length;
+  imgs.forEach(i => {
+    if (i.complete && i.naturalWidth) { if (--left === 0) apply(); }
+    else i.addEventListener('load', () => { if (--left === 0) apply(); }, { once: true });
+  });
+}
+
 // ── 메인 팝업 (index.html) ─────────────────────────────────
 async function initNoticePopup() {
   if (!document.querySelector('.hero')) return;   // 메인에서만
@@ -208,7 +223,10 @@ async function initNoticePopup() {
     dlg.querySelector('h3').textContent = n.제목;
     dlg.querySelector('.pop-body').textContent = n.내용;
     const popPics = imageList(n.이미지);
-    if (popPics) dlg.querySelector('.pop-body').appendChild(popPics);
+    if (popPics) {
+      dlg.querySelector('.pop-body').appendChild(popPics);
+      sizeToImages(dlg, popPics);
+    }
     const popFiles = attachmentList(n.첨부);
     if (popFiles) dlg.querySelector('.pop-body').appendChild(popFiles);
 
