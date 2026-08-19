@@ -313,7 +313,8 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:46px 0;font-s
   .history dd{padding:12px 0 28px;border-top:0}
   .form .row{grid-template-columns:1fr;gap:8px;padding:16px 0}
   .form label{padding-top:0}
-  .board th:nth-child(1),.board td:nth-child(1),
+  /* 상세 행(.detail)은 본문 셀이므로 숨김 대상에서 제외한다 */
+  .board th:nth-child(1),.board tr:not(.detail) td:nth-child(1),
   .board th:nth-child(3),.board td.writer{display:none}
 }
 
