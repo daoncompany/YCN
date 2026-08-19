@@ -116,8 +116,8 @@ h4{font-size:20px;letter-spacing:-.01em}
 .zone::before{content:'';position:absolute;inset:0;
   background:radial-gradient(90% 120% at 78% 30%, rgba(0,47,115,.75) 0%, rgba(17,17,17,0) 62%)}
 .zone-in{position:relative;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
-.zone-logo{width:330px;margin-bottom:26px}
-.zone p{color:rgba(255,255,255,.72);margin-bottom:36px;font-size:21px;letter-spacing:-.01em}
+.zone-logo{width:200px;margin-bottom:22px}
+.zone p{color:#fff;margin-bottom:36px;font-size:28px;font-weight:700;line-height:1.45;letter-spacing:-.02em}
 .zone .btn-ghost{color:#fff;border-color:rgba(255,255,255,.45)}
 .zone .btn-ghost:hover{background:#fff;color:var(--black);border-color:#fff}
 .zone-mark{width:540px}
