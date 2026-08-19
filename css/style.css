@@ -115,12 +115,12 @@ h4{font-size:20px;letter-spacing:-.01em}
 /* 단색 위에 아주 옅은 글로우만. 심플하게 */
 .zone::before{content:'';position:absolute;inset:0;
   background:radial-gradient(90% 120% at 78% 30%, rgba(0,47,115,.75) 0%, rgba(17,17,17,0) 62%)}
-.zone-in{position:relative;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
-.zone-logo{width:236px;margin-bottom:24px}
-.zone p{color:rgba(255,255,255,.72);margin-bottom:34px;font-size:19px;letter-spacing:-.01em}
+.zone-in{position:relative;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.zone-logo{width:330px;margin-bottom:26px}
+.zone p{color:rgba(255,255,255,.72);margin-bottom:36px;font-size:21px;letter-spacing:-.01em}
 .zone .btn-ghost{color:#fff;border-color:rgba(255,255,255,.45)}
 .zone .btn-ghost:hover{background:#fff;color:var(--black);border-color:#fff}
-.zone-mark{width:380px}
+.zone-mark{width:540px}
 .zone-icons{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:16px;
   margin-top:76px;padding-top:44px;border-top:1px solid rgba(255,255,255,.14)}
 .zone-icons li{text-align:center}
