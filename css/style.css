@@ -303,9 +303,11 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:46px 0;font-s
 
 /* ── 공지 팝업 ─────────────────────────────── */
 /* 세로 스크롤바가 한쪽만 차지하면 가운데 정렬이 틀어져 보이므로 양쪽에 자리를 잡는다 */
+/* 공지 팝업은 좁게. 정책 팝업(본문이 긴 문서)은 820px 유지 */
+.pop-notice{max-width:560px}
 .pop-notice .pop-body{white-space:pre-wrap;color:var(--black);min-height:80px;scrollbar-gutter:stable both-edges}
 .pop-notice .notice-img{text-align:center}
-.pop-notice .notice-img img{margin-left:auto;margin-right:auto}
+.pop-notice .notice-img img{max-width:100%;margin-left:auto;margin-right:auto}
 .pop-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;
   padding:16px 30px;border-top:1px solid var(--line)}
 .pop-foot label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--dim);cursor:pointer}
