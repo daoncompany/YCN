@@ -85,6 +85,18 @@ function normalizeDate(v) {
   return t;
 }
 
+// 드라이브 파일 ID 추출 (uc?id= / file/d/ / thumbnail?id= / lh3 형식 모두)
+function driveFileId(url) {
+  const m = String(url).match(/(?:drive\.google\.com\/(?:uc\?(?:[^#]*&)?id=|file\/d\/|thumbnail\?(?:[^#]*&)?id=)|lh3\.googleusercontent\.com\/d\/)([-\w]{10,})/);
+  return m ? m[1] : '';
+}
+
+// 드라이브 주소는 <img> 로 직접 안 뜨므로(uc?export=view 는 차단됨) thumbnail 형식으로 바꾼다
+function imageSrc(url) {
+  const id = driveFileId(url);
+  return id ? 'https://drive.google.com/thumbnail?id=' + id + '&sz=w1600' : url;
+}
+
 // 이미지 목록 DOM
 function imageList(cell) {
   const files = parseAttachments(cell);
@@ -93,7 +105,7 @@ function imageList(cell) {
   box.className = 'notice-img';
   files.forEach(f => {
     const img = document.createElement('img');
-    img.src = f.url;
+    img.src = imageSrc(f.url);
     img.alt = f.name === '첨부파일' ? '' : f.name;
     img.loading = 'lazy';
     box.appendChild(img);
