@@ -107,7 +107,7 @@ function imageList(cell) {
     const img = document.createElement('img');
     img.src = imageSrc(f.url);
     img.alt = f.name === '첨부파일' ? '' : f.name;
-    img.loading = 'lazy';
+    // 상세는 클릭해야 열리므로 lazy 로 미루면 펼친 직후 빈 공간이 생긴다
     box.appendChild(img);
   });
   return box;
