@@ -52,18 +52,10 @@ function initTabs() {
   });
 }
 
-// 서브 비주얼의 페이지 이동 셀렉트
-function initPageSelect() {
-  document.querySelectorAll('.page-select select').forEach(sel => {
-    sel.onchange = () => { if (sel.value) location.href = sel.value; };
-  });
-}
-
 includePartials().then(() => {
   initGnb();
   initPopups();
   initTabs();
-  initPageSelect();
   if (typeof initNoticeList === 'function') { initNoticeList(); initNoticePopup(); }
   if (typeof initAdminForm === 'function') initAdminForm();
 });
