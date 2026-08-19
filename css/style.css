@@ -1,7 +1,7 @@
 :root{
   --white:#FFFFFF;
   --black:#111111;
-  --blue:#4A70A9;
+  --blue:#002F73;
   --line:rgba(17,17,17,.12);
   --dim:rgba(17,17,17,.55);
   --wrap:1280px;
@@ -31,7 +31,7 @@ h4{font-size:20px;letter-spacing:-.01em}
 
 /* ── 버튼 ───────────────────────────────── */
 .btn{display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 26px;font-size:14px;font-weight:800;border:1px solid var(--blue);background:var(--blue);color:#fff;transition:.2s}
-.btn:hover{background:#3d5f92;border-color:#3d5f92}
+.btn:hover{background:#001d48;border-color:#001d48}
 .btn-ghost{background:none;color:var(--black);border-color:var(--line)}
 .btn-ghost:hover{background:none;border-color:var(--black)}
 .btn-text{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--blue)}
@@ -206,7 +206,7 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:46px 0;font-s
 /* ── 서브 비주얼 ────────────────────────────── */
 .sub-visual{position:relative;background:var(--black);color:#fff;padding:150px 0 0;overflow:hidden}
 .sub-visual::before{content:'';position:absolute;inset:0;
-  background:radial-gradient(120% 140% at 15% 0%, rgba(74,112,169,.55) 0%, rgba(17,17,17,0) 60%)}
+  background:radial-gradient(120% 140% at 15% 0%, rgba(0,47,115,.65) 0%, rgba(17,17,17,0) 60%)}
 .sub-visual .wrap{position:relative}
 .sub-visual h1{font-size:clamp(40px,5.4vw,72px);font-weight:400;letter-spacing:.01em;line-height:1}
 .sub-visual .tagline{margin-top:14px;font-size:13px;color:rgba(255,255,255,.55);letter-spacing:.02em}
