@@ -1,6 +1,3 @@
-// 공통 스크립트 — 헤더/푸터 인클루드 후 초기화
-// 정적 호스팅용이라 서버사이드 include 대신 fetch로 삽입한다 (file:// 로 열면 CORS로 막히니 서버에서 볼 것)
-
 async function includePartials() {
   const slots = [...document.querySelectorAll('[data-include]')];
   await Promise.all(slots.map(async el => {
@@ -13,7 +10,6 @@ function initGnb() {
   const gnb = document.querySelector('.gnb');
   if (!gnb) return;
 
-  // 모바일 전체메뉴
   gnb.querySelector('.hamb').onclick = () => {
     gnb.classList.toggle('open');
     document.body.style.overflow = gnb.classList.contains('open') ? 'hidden' : '';
@@ -22,7 +18,6 @@ function initGnb() {
     if (e.target.tagName === 'A') { gnb.classList.remove('open'); document.body.style.overflow = ''; }
   };
 
-  // 현재 페이지 메뉴 활성화
   const here = location.pathname.split('/').pop() || 'index.html';
   gnb.querySelectorAll('.menu a').forEach(a => {
     if (a.getAttribute('href') === here) {
@@ -40,7 +35,6 @@ function initPopups() {
   document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => b.closest('dialog').close());
 }
 
-// 메인 Our System 탭
 function initTabs() {
   const tabs = [...document.querySelectorAll('#tabs button')];
   const panels = [...document.querySelectorAll('#panels .panel')];
