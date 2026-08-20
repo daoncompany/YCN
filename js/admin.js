@@ -1,13 +1,7 @@
-// 공지사항 작성 폼 — 구글 Apps Script 웹앱으로 전송한다
-//
-// apps-script/Code.gs 를 시트에 붙여넣고 '웹 앱'으로 배포한 뒤,
-// 발급된 주소(https://script.google.com/macros/s/.../exec)를 아래에 넣는다.
-// 스크립트를 고친 뒤에는 '배포 관리 > 편집 > 새 버전'으로 다시 배포해야 반영된다.
 const NOTICE_API = 'https://script.google.com/macros/s/AKfycbyWE6Ngwwyfi0jVJylSDeNSiwXkMultR9mkRA5gBNrAV82jhj70YUwVIRH0s33N9hd3rQ/exec';
 
 const MAX_FILE_MB = 8;
 
-// 파일 → { name, type, data(base64) }
 function readFile(file) {
   return new Promise((resolve, reject) => {
     const r = new FileReader();
@@ -15,13 +9,12 @@ function readFile(file) {
     r.onload = () => resolve({
       name: file.name,
       type: file.type,
-      data: String(r.result).split(',')[1]   // data:...;base64, 뒷부분만
+      data: String(r.result).split(',')[1]
     });
     r.readAsDataURL(file);
   });
 }
 
-// 용량 초과 파일 이름 목록 (빈 배열이면 통과)
 function oversized(files, maxMB = MAX_FILE_MB) {
   return [...files].filter(f => f.size > maxMB * 1024 * 1024).map(f => f.name);
 }
@@ -36,7 +29,7 @@ function initAdminForm() {
   const range = form.querySelector('#popup-range');
   const date = form.querySelector('#w-date');
 
-  date.value = new Date().toLocaleDateString('sv-SE');           // 오늘 날짜 자동
+  date.value = new Date().toLocaleDateString('sv-SE');
   popup.onchange = () => { range.hidden = !popup.checked; };
 
   const say = (text, kind) => { msg.textContent = text; msg.className = 'form-msg ' + (kind || ''); };
@@ -67,7 +60,6 @@ function initAdminForm() {
         files: await Promise.all([...files].map(readFile))
       };
 
-      // text/plain 으로 보내야 preflight 없이 Apps Script 로 전달된다
       const res = await fetch(NOTICE_API, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -88,7 +80,6 @@ function initAdminForm() {
   };
 }
 
-// ── 자체 점검 : admin.html?selftest=1 ───────────────────────
 function adminSelfTest() {
   const big = { name: 'big.zip', size: 9 * 1024 * 1024 };
   const ok = { name: 'ok.png', size: 1024 };

@@ -1,21 +1,6 @@
-// 공지사항 — 구글 시트를 그대로 데이터 소스로 쓴다 (백엔드·API 키 없음)
-//
-// [ 시트 준비 방법 ]
-// 1. 구글 시트 1행에 아래 머리글을 그대로 둔다.
-//      제목 | 내용 | 작성일 | 작성자 | 팝업 | 시작일 | 종료일 | 이미지 | 첨부
-//    - 작성일/시작일/종료일 : 2026-09-20 형식
-//    - 팝업 : 메인에 띄울 공지만 Y (비워두면 목록에만 노출)
-//    - 시작일/종료일 : 비워두면 기간 제한 없이 계속 노출
-//    - 이미지 : 본문에 함께 보여줄 이미지 주소. 여러 개면 세미콜론(;)으로 구분한다.
-//    - 첨부 : 내려받을 파일 주소. 여러 개면 세미콜론(;)으로 구분한다.
-//            "안전관리 지침.pdf|https://..." 처럼 앞에 이름을 적으면 그 이름으로 표시된다.
-//            드라이브 파일은 공유 설정을 '링크가 있는 모든 사용자'로 해야 방문자가 열 수 있다.
-// 2. 공유 설정을 '링크가 있는 모든 사용자 - 뷰어' 로 둔다. (웹에 게시는 하지 않아도 된다)
-// 3. 시트 주소의 문서 ID 부분만 아래에 넣는다.
 const SHEET_ID = '1ST7W5gHOVJ5cD_2IdonuZmkpidpP-StXhhP6FHxy_V8';
 const NOTICE_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
 
-// ── CSV 파싱 (따옴표 안의 쉼표·줄바꿈까지 처리) ──────────────
 function parseCSV(text) {
   const rows = [];
   let row = [], cell = '', quoted = false;
@@ -34,7 +19,6 @@ function parseCSV(text) {
   return rows;
 }
 
-// 머리글 이름으로 매핑해 둔다 — 시트 열 순서가 바뀌어도 깨지지 않게
 function toRecords(rows) {
   if (!rows.length) return [];
   const head = rows[0].map(h => h.trim());
@@ -43,7 +27,6 @@ function toRecords(rows) {
     .map(r => Object.fromEntries(head.map((h, i) => [h, (r[i] || '').trim()])));
 }
 
-// 첨부 셀 → [{name, url}] . 이름을 안 적으면 '첨부파일'로 표시한다
 function parseAttachments(cell) {
   if (!cell) return [];
   return cell.split(/[;\n]/).map(s => s.trim()).filter(Boolean).map(item => {
@@ -54,7 +37,6 @@ function parseAttachments(cell) {
   }).filter(a => /^https?:\/\//.test(a.url));
 }
 
-// 첨부 목록 DOM. 링크 문자열은 시트에서 오므로 textContent/href 로만 넣는다
 function attachmentList(cell) {
   const files = parseAttachments(cell);
   if (!files.length) return null;
@@ -73,31 +55,27 @@ function attachmentList(cell) {
   return ul;
 }
 
-// 시트 날짜 셀 → YYYY-MM-DD . 서식이 날짜형이면 로케일 표기로 나오기도 해서 한 번 정규화한다
 function normalizeDate(v) {
   if (!v) return '';
   const t = v.trim();
   if (/^\d{4}-\d{2}-\d{2}$/.test(t)) return t;
-  const m = t.match(/^Date\((\d+),(\d+),(\d+)/);      // gviz 날짜형 표기
+  const m = t.match(/^Date\((\d+),(\d+),(\d+)/);
   if (m) return `${m[1]}-${String(+m[2] + 1).padStart(2, '0')}-${m[3].padStart(2, '0')}`;
-  const n = t.match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/); // 2026. 9. 20 / 2026/9/20
+  const n = t.match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);
   if (n) return `${n[1]}-${n[2].padStart(2, '0')}-${n[3].padStart(2, '0')}`;
   return t;
 }
 
-// 드라이브 파일 ID 추출 (uc?id= / file/d/ / thumbnail?id= / lh3 형식 모두)
 function driveFileId(url) {
   const m = String(url).match(/(?:drive\.google\.com\/(?:uc\?(?:[^#]*&)?id=|file\/d\/|thumbnail\?(?:[^#]*&)?id=)|lh3\.googleusercontent\.com\/d\/)([-\w]{10,})/);
   return m ? m[1] : '';
 }
 
-// 드라이브 주소는 <img> 로 직접 안 뜨므로(uc?export=view 는 차단됨) 원본을 주는 형식으로 바꾼다
 function imageSrc(url) {
   const id = driveFileId(url);
   return id ? 'https://lh3.googleusercontent.com/d/' + id : url;
 }
 
-// 이미지 목록 DOM
 function imageList(cell) {
   const files = parseAttachments(cell);
   if (!files.length) return null;
@@ -107,15 +85,13 @@ function imageList(cell) {
     const img = document.createElement('img');
     img.src = imageSrc(f.url);
     img.alt = f.name === '첨부파일' ? '' : f.name;
-    // 상세는 클릭해야 열리므로 lazy 로 미루면 펼친 직후 빈 공간이 생긴다
     box.appendChild(img);
   });
   return box;
 }
 
-const today = () => new Date().toLocaleDateString('sv-SE');   // YYYY-MM-DD
+const today = () => new Date().toLocaleDateString('sv-SE');
 
-// 날짜 문자열은 YYYY-MM-DD 고정이라 문자열 비교로 충분하다
 function inRange(rec, day) {
   if (rec.시작일 && day < rec.시작일) return false;
   if (rec.종료일 && day > rec.종료일) return false;
@@ -140,7 +116,6 @@ async function loadNotices() {
   }
 }
 
-// ── 목록 (notice.html) ─────────────────────────────────────
 async function initNoticeList() {
   const tbody = document.querySelector('#notice-list');
   if (!tbody) return;
@@ -187,9 +162,6 @@ async function initNoticeList() {
   });
 }
 
-// ── 메인 팝업 (index.html) ─────────────────────────────────
-// 공지 하나를 <dialog> 로 만든다. 아직 열지는 않는다.
-// onDone 은 닫힌 뒤 다음 공지를 띄우는 콜백 (close 이벤트가 안 오는 브라우저가 있어 직접 호출한다)
 function buildNoticeDialog(n, day, key, onDone) {
   const dlg = document.createElement('dialog');
   dlg.className = 'pop-notice';
@@ -213,12 +185,12 @@ function buildNoticeDialog(n, day, key, onDone) {
     onDone();
   };
   dlg.querySelectorAll('[data-close]').forEach(b => b.onclick = done);
-  dlg.addEventListener('cancel', e => { e.preventDefault(); done(); });   // ESC
+  dlg.addEventListener('cancel', e => { e.preventDefault(); done(); });
   return dlg;
 }
 
 async function initNoticePopup() {
-  if (!document.querySelector('.hero')) return;   // 메인에서만
+  if (!document.querySelector('.hero')) return;
 
   const day = today();
   const day_ = day;
@@ -226,7 +198,6 @@ async function initNoticePopup() {
     .filter(n => n.팝업.toUpperCase() === 'Y' && inRange(n, day_))
     .filter(n => localStorage.getItem('ycn-notice-' + n.작성일 + '-' + n.제목) !== day_);
 
-  // 여러 건이면 겹쳐 쌓지 않고 하나 닫을 때마다 다음 것을 띄운다
   let i = 0;
   const queue = [];
   const showNext = () => { if (i < queue.length) queue[i++].showModal(); };
@@ -239,7 +210,6 @@ async function initNoticePopup() {
   showNext();
 }
 
-// ── 자체 점검 : ?selftest=1 로 열면 콘솔에서 확인 ───────────
 function noticeSelfTest() {
   const csv = '제목,내용,작성일,팝업\n"추석, 휴무","1줄\n2줄",2026-09-20,Y\n일반공지,본문,2026-08-01,\n';
   const recs = toRecords(parseCSV(csv));
