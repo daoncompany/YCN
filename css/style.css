@@ -102,9 +102,9 @@ h4{font-size:20px;letter-spacing:-.01em}
   color:rgba(120,170,255,.07);white-space:nowrap}
 .zone-in{position:relative;display:grid;place-items:center;min-height:540px}
 .zone-in>*{grid-area:1/1}
-.zone-orb{width:min(530px,84vw);aspect-ratio:1;overflow:visible}
-.zone-orb use{fill:none;stroke:url(#rg);stroke-width:.45;vector-effect:non-scaling-stroke}
-.zone-orb>use{transform-origin:0 0;animation:orbSpin 54s linear infinite;opacity:.3}
+.zone-orb{position:relative;width:min(530px,84vw);aspect-ratio:1}
+.zone-orb img{position:absolute;inset:0;width:100%;height:100%;
+  transform-origin:50% 50%;animation:orbSpin 54s linear infinite;opacity:.3}
 .zone-orb .r2{animation-name:orbSpin2;animation-duration:78s;animation-direction:reverse;opacity:.6}
 @keyframes orbSpin{to{transform:rotate(360deg)}}
 @keyframes orbSpin2{from{transform:rotate(24deg)}to{transform:rotate(384deg)}}
@@ -114,7 +114,7 @@ h4{font-size:20px;letter-spacing:-.01em}
 .zone p b{color:#7fd6e8}
 .zone .btn-ghost{color:#fff;border-color:rgba(255,255,255,.45);background:rgba(5,7,13,.5)}
 .zone .btn-ghost:hover{background:#fff;color:var(--black);border-color:#fff}
-@media (prefers-reduced-motion:reduce){.zone-orb>use{animation:none}}
+@media (prefers-reduced-motion:reduce){.zone-orb img{animation:none}}
 .zone-icons{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:16px;
   margin-top:76px;padding-top:44px;border-top:1px solid rgba(255,255,255,.14)}
 .zone-icons li{text-align:center}
