@@ -102,14 +102,11 @@ h4{font-size:20px;letter-spacing:-.01em}
   color:rgba(120,170,255,.07);white-space:nowrap}
 .zone-in{position:relative;display:grid;place-items:center;min-height:560px}
 .zone-in>*{grid-area:1/1}
-.zone-orb{width:min(620px,88vw);aspect-ratio:1;overflow:visible;
-  filter:drop-shadow(0 0 7px rgba(60,140,255,.45));
-  -webkit-mask:radial-gradient(closest-side,transparent 48%,#000 78%);
-  mask:radial-gradient(closest-side,transparent 48%,#000 78%)}
-.zone-orb ellipse{fill:none;stroke:#8ec2ff;stroke-width:.8;vector-effect:non-scaling-stroke}
-.zone-orb g{transform-origin:0 0;animation:orbSpin 44s linear infinite}
-.zone-orb .b2{animation-duration:66s;animation-direction:reverse}
-.zone-orb .b3{animation-duration:88s;stroke:#5f9de8}
+.zone-orb{width:min(660px,90vw);aspect-ratio:1;overflow:visible;
+  filter:drop-shadow(0 0 1px rgba(74,168,255,.45))}
+.zone-orb use{fill:none;stroke:url(#wg);stroke-width:.5;vector-effect:non-scaling-stroke}
+.zone-orb g{transform-origin:0 0;animation:orbSpin 46s linear infinite}
+.zone-orb .b2{animation-duration:64s;animation-direction:reverse}
 @keyframes orbSpin{to{transform:rotate(360deg)}}
 .zone-txt{position:relative;text-align:center}
 .zone-logo{width:230px;margin:0 auto 30px}
