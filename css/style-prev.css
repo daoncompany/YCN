@@ -315,11 +315,11 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:46px 0;font-s
 .s3{background:#05070d;color:#fff}
 .s3 h2,.s3 h3,.s3 h4{color:#fff;letter-spacing:-.03em}
 .s3 .ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;
-  font-size:13px;color:rgba(255,255,255,.42);text-align:center;padding:12px}
+  font-size:12px;font-weight:600;color:rgba(255,255,255,.42);text-align:center;padding:12px}
 .s3-badge{display:inline-flex;align-items:center;height:38px;padding:0 22px;border-radius:999px;
-  font-size:13px;font-weight:800;letter-spacing:-.01em;color:#fff;border:1px solid rgba(255,255,255,.22);
+  font-size:13px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.22);
   background:rgba(255,255,255,.05)}
-.s3-badge.sm{height:32px;padding:0 16px;font-size:11px;font-weight:800;letter-spacing:.04em;color:#6db2ff;
+.s3-badge.sm{height:34px;padding:0 18px;font-size:12px;color:#6db2ff;
   border-color:rgba(109,178,255,.35);background:rgba(109,178,255,.10)}
 .s3-hero{position:relative;padding:130px 0 120px;overflow:hidden}
 .s3-hero::before{content:'';position:absolute;inset:0;
@@ -329,22 +329,23 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:46px 0;font-s
   filter:blur(3px);opacity:.35}
 .s3-collage .ph{border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03);border-radius:6px}
 .s3-hero-in{position:relative;text-align:center}
-.s3-hero-in h1{margin:22px 0 20px}
-.s3-sub{font-size:15px;line-height:1.7;color:rgba(255,255,255,.62)}
+.s3-hero-in h2{font-size:clamp(30px,4vw,54px);line-height:1.25;margin:26px 0 20px}
+.s3-sub{font-size:clamp(14px,1.3vw,17px);line-height:1.75;color:rgba(255,255,255,.66)}
 .s3-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:44px 0 66px}
-.s3-chips li{height:48px;display:inline-flex;align-items:center;padding:0 26px;border-radius:999px;
-  font-size:14px;font-weight:800;letter-spacing:-.01em;color:rgba(255,255,255,.88);
+.s3-chips li{height:52px;display:inline-flex;align-items:center;padding:0 30px;border-radius:999px;
+  font-size:15px;font-weight:700;color:rgba(255,255,255,.88);
   background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10)}
 .s3-device{position:relative;aspect-ratio:16/9;border-radius:14px;
   border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.035);
   box-shadow:0 40px 90px rgba(0,0,0,.55)}
 .s3-split{display:grid;grid-template-columns:1fr 1.15fr;gap:70px;align-items:center;padding:110px 40px}
-.s3 .kicker{display:block;color:#6db2ff;margin-bottom:20px}
-.s3-txt h3{font-size:26px;line-height:1.4;margin-bottom:28px}
+.s3-split.rev .s3-txt{order:2}
+.s3-kicker{display:block;font-size:14px;font-weight:700;color:rgba(255,255,255,.62);margin-bottom:22px}
+.s3-txt h3{font-size:clamp(26px,3.1vw,42px);line-height:1.3;margin-bottom:30px}
 .s3-txt h3 b{color:#4a9eff;font-weight:800}
-.s3-txt h4{margin:24px 0 14px}
-.s3-txt p{font-size:15px;line-height:1.7;color:rgba(255,255,255,.6);margin-bottom:32px}
-.s3-cta{display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 26px;border-radius:999px;
+.s3-txt h4{font-size:clamp(20px,2.2vw,30px);line-height:1.4;margin:26px 0 16px}
+.s3-txt p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.62);margin-bottom:34px}
+.s3-cta{display:inline-flex;align-items:center;height:52px;padding:0 30px;border-radius:999px;
   font-size:14px;font-weight:800;color:#fff;background:#1f7ae0;transition:.2s}
 .s3-cta:hover{background:#3a92f5}
 .s3-cta.solid{background:#fff;color:#0b1220}
@@ -352,17 +353,18 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:46px 0;font-s
 .s3-card{aspect-ratio:4/3;border-radius:14px;border:1px solid rgba(255,255,255,.14);
   background:rgba(255,255,255,.035);box-shadow:0 30px 70px rgba(0,0,0,.5)}
 .s3-grid{padding:40px 40px 110px}
-.s3-grid-h{font-size:clamp(26px,2.6vw,36px);text-align:center;margin-bottom:50px}
+.s3-grid-h{font-size:clamp(24px,2.6vw,36px);text-align:center;margin-bottom:50px}
 .s3-grid ul{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .s3-grid li{padding:34px 30px 38px;border-radius:12px;
   border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04)}
 .s3-num{display:block;font-size:13px;font-weight:800;color:#4a9eff;margin-bottom:16px}
-.s3-grid b{display:block;font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:10px}
-.s3-grid p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.6)}
+.s3-grid b{display:block;font-size:18px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+.s3-grid p{font-size:13.5px;line-height:1.7;color:rgba(255,255,255,.6)}
 .s3-cta-box{text-align:center;padding:0 40px 130px}
-.s3-cta-box h3{font-size:clamp(26px,2.6vw,36px);line-height:1.4;margin-bottom:32px}
+.s3-cta-box h3{font-size:clamp(24px,2.8vw,38px);line-height:1.35;margin-bottom:34px}
 @media (max-width:1024px){
   .s3-split{grid-template-columns:1fr;gap:40px;padding:80px 24px}
+  .s3-split.rev .s3-txt{order:0}
   .s3-grid ul{grid-template-columns:1fr}
   .s3-grid{padding:20px 24px 80px}
   .s3-collage{grid-template-columns:repeat(2,1fr);padding:0 24px;height:300px}
