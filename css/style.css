@@ -104,10 +104,10 @@ h4{font-size:20px;letter-spacing:-.01em}
 .zone-in>*{grid-area:1/1}
 .zone-orb{position:relative;width:min(780px,92vw);aspect-ratio:1}
 .zone-orb img{position:absolute;inset:0;width:100%;height:100%;
-  transform-origin:50% 50%;animation:orbSpin 54s linear infinite}
-.zone-orb .r2{animation-name:orbSpin2;animation-duration:78s;animation-direction:reverse;opacity:.55}
+  transform-origin:50% 50%;animation:orbSpin 54s linear infinite;opacity:.3}
+.zone-orb .r2{animation-name:orbSpin2;animation-duration:78s;animation-direction:reverse;opacity:.6}
 @keyframes orbSpin{to{transform:rotate(360deg)}}
-@keyframes orbSpin2{from{transform:rotate(24deg) scale(.84)}to{transform:rotate(384deg) scale(.84)}}
+@keyframes orbSpin2{from{transform:rotate(24deg)}to{transform:rotate(384deg)}}
 .zone-txt{position:relative;text-align:center}
 .zone-logo{width:230px;margin:0 auto 30px}
 .zone p{color:#fff;margin-bottom:26px;font-size:clamp(18px,2vw,27px);font-weight:700;line-height:1.5;letter-spacing:-.02em}
