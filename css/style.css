@@ -96,10 +96,13 @@ h4{font-size:20px;letter-spacing:-.01em}
 .zone{position:relative;background:#05070d;color:#fff;margin:120px 0;padding:120px 0;overflow:hidden}
 .zone::before{content:'';position:absolute;inset:0;
   background:radial-gradient(60% 60% at 50% 45%, rgba(0,72,168,.30) 0%, rgba(5,7,13,0) 70%)}
-.zone-word{position:absolute;top:50%;left:0;right:0;transform:translateY(-58%);
+.zone-word{--ring:min(530px,84vw);
+  position:absolute;top:50%;left:0;right:0;transform:translateY(-58%);
   display:flex;justify-content:space-between;padding:0 40px;pointer-events:none;
-  font-size:clamp(70px,13vw,190px);font-weight:900;letter-spacing:-.045em;line-height:1;
+  font-size:clamp(34px,calc((100vw - var(--ring) - 130px) / 9.8),96px);
+  font-weight:800;letter-spacing:-.05em;line-height:1;
   color:rgba(120,170,255,.07);white-space:nowrap}
+@media (max-width:1000px){.zone-word{display:none}}
 .zone-in{position:relative;display:grid;place-items:center;min-height:540px}
 .zone-in>*{grid-area:1/1}
 .zone-orb{position:relative;width:min(530px,84vw);aspect-ratio:1}
