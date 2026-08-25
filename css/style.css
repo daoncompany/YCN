@@ -100,17 +100,17 @@ h4{font-size:20px;letter-spacing:-.01em}
   display:flex;justify-content:space-between;padding:0 40px;pointer-events:none;
   font-size:clamp(70px,13vw,190px);font-weight:900;letter-spacing:-.045em;line-height:1;
   color:rgba(120,170,255,.07);white-space:nowrap}
-.zone-in{position:relative;display:grid;place-items:center;min-height:640px}
+.zone-in{position:relative;display:grid;place-items:center;min-height:540px}
 .zone-in>*{grid-area:1/1}
-.zone-orb{width:min(780px,92vw);aspect-ratio:1;overflow:visible}
+.zone-orb{width:min(530px,84vw);aspect-ratio:1;overflow:visible}
 .zone-orb use{fill:none;stroke:url(#rg);stroke-width:.75;vector-effect:non-scaling-stroke}
 .zone-orb>use{transform-origin:0 0;animation:orbSpin 54s linear infinite;opacity:.3}
 .zone-orb .r2{animation-name:orbSpin2;animation-duration:78s;animation-direction:reverse;opacity:.6}
 @keyframes orbSpin{to{transform:rotate(360deg)}}
 @keyframes orbSpin2{from{transform:rotate(24deg)}to{transform:rotate(384deg)}}
 .zone-txt{position:relative;text-align:center}
-.zone-logo{width:230px;margin:0 auto 30px}
-.zone p{color:#fff;margin-bottom:26px;font-size:clamp(18px,2vw,27px);font-weight:700;line-height:1.5;letter-spacing:-.02em}
+.zone-logo{width:170px;margin:0 auto 24px}
+.zone p{color:#fff;margin-bottom:26px;font-size:clamp(16px,1.7vw,23px);font-weight:700;line-height:1.5;letter-spacing:-.02em}
 .zone p b{color:#7fd6e8}
 .zone .btn-ghost{color:#fff;border-color:rgba(255,255,255,.45);background:rgba(5,7,13,.5)}
 .zone .btn-ghost:hover{background:#fff;color:var(--black);border-color:#fff}
