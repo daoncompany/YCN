@@ -103,7 +103,7 @@ h4{font-size:20px;letter-spacing:-.01em}
 .zone-in{position:relative;display:grid;place-items:center;min-height:540px}
 .zone-in>*{grid-area:1/1}
 .zone-orb{width:min(530px,84vw);aspect-ratio:1;overflow:visible}
-.zone-orb use{fill:none;stroke:url(#rg);stroke-width:.75;vector-effect:non-scaling-stroke}
+.zone-orb use{fill:none;stroke:url(#rg);stroke-width:.45;vector-effect:non-scaling-stroke}
 .zone-orb>use{transform-origin:0 0;animation:orbSpin 54s linear infinite;opacity:.3}
 .zone-orb .r2{animation-name:orbSpin2;animation-duration:78s;animation-direction:reverse;opacity:.6}
 @keyframes orbSpin{to{transform:rotate(360deg)}}
