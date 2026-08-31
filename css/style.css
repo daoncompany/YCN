@@ -208,6 +208,9 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:46px 0;font-s
 .history dd p{position:relative;padding-left:16px;margin-bottom:8px;font-size:14.5px}
 .history dd p::before{content:'';position:absolute;left:0;top:11px;width:5px;height:5px;background:var(--blue)}
 .history dd p:last-child{margin-bottom:0}
+.history dd p.det{padding-left:32px;margin:-2px 0 6px;font-size:13.5px;color:var(--dim)}
+.history dd p.det::before{display:none}
+.history dd p.det+p:not(.det){margin-top:18px}
 .cert{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .cert li{text-align:center}
 .cert .thumb{aspect-ratio:3/4;background:#fafafa;border:1px solid var(--line);
