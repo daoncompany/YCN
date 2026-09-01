@@ -132,14 +132,14 @@ h4{font-size:23px;letter-spacing:-.01em}
 .partner{padding:120px 0}
 .partner h2{text-align:center;margin-bottom:56px}
 .partner .wrap{max-width:none;padding-left:56px;padding-right:56px}
-.roll{--g:min(94px,calc(((100vw - 208px) / 5 - 48px) / 3.05));
+.roll{--g:min(94px,calc(((100vw - 208px) / 5 - 48px) / 2.83));
   display:grid;grid-template-columns:repeat(5,1fr);gap:24px}
 .roll span{display:flex;align-items:center;justify-content:center;padding:0 24px;
-  height:calc(var(--g) / 1.448 + 30px);
+  height:calc(var(--g) * 0.845 + 30px);
   border-radius:30px;box-shadow:inset 0 0 0 1px #EFEFEF}
-.roll img{width:auto;max-width:100%;height:calc(var(--g) / var(--sr));object-fit:contain}
+.roll img{width:auto;max-width:100%;height:calc(var(--g) * var(--k) / var(--sr));object-fit:contain}
 @media(max-width:1400px){
-  .roll{--g:min(94px,calc(((100vw - 184px) / 4 - 48px) / 3.05));
+  .roll{--g:min(94px,calc(((100vw - 184px) / 4 - 48px) / 2.83));
     grid-template-columns:repeat(4,1fr)}}
 .cta-us{position:relative;overflow:hidden;background:#05070d;color:#fff;padding:150px 0}
 .cta-bg{position:absolute;top:50%;left:58%;width:900px;max-width:none;transform:translateY(-50%);
@@ -225,7 +225,7 @@ footer .wrap{max-width:none;padding-left:40px;padding-right:40px}
   .tabs button{white-space:normal;line-height:1.4}
   .zone-icons{grid-template-columns:repeat(3,1fr);gap:28px}
   .partner .wrap{padding-left:24px;padding-right:24px}
-  .roll{--g:min(94px,calc(((100vw - 80px) / 3 - 48px) / 3.05));
+  .roll{--g:min(94px,calc(((100vw - 80px) / 3 - 48px) / 2.83));
     grid-template-columns:repeat(3,1fr);gap:16px}
   .loc{grid-template-columns:repeat(2,1fr)}
   .contact .map{height:320px}
@@ -455,6 +455,6 @@ footer .wrap{max-width:none;padding-left:40px;padding-right:40px}
   .s3-card{max-width:420px;margin:0 auto;width:100%}
 }
 @media(max-width:560px){
-  .roll{--g:min(70px,calc(((100vw - 60px) / 2 - 28px) / 3.05));
+  .roll{--g:min(70px,calc(((100vw - 60px) / 2 - 28px) / 2.83));
     grid-template-columns:repeat(2,1fr);gap:12px}
   .roll span{padding:0 14px;border-radius:24px}}
