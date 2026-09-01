@@ -27,6 +27,33 @@ function initGnb() {
   });
 }
 
+function initScrollHeader() {
+  const gnb = document.querySelector('.gnb');
+  if (!gnb) return;
+  let last = window.scrollY;
+  addEventListener('scroll', () => {
+    const y = window.scrollY;
+    // 모바일 메뉴가 열려 있으면 숨기지 않는다
+    if (!gnb.classList.contains('open')) {
+      gnb.classList.toggle('hide', y > 160 && y > last);
+    }
+    last = y;
+  }, { passive: true });
+}
+
+function initSplitReveal() {
+  document.querySelectorAll('.split').forEach(el => {
+    if (el.dataset.split) return;
+    el.dataset.split = '1';
+    el.innerHTML = [...el.textContent].map((c, i) =>
+      `<span style="transition-delay:${i * 40}ms">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+  });
+  const io = new IntersectionObserver((rows, ob) => {
+    rows.forEach(r => { if (r.isIntersecting) { r.target.classList.add('on'); ob.unobserve(r.target); } });
+  }, { threshold: .3 });
+  document.querySelectorAll('.split').forEach(el => io.observe(el));
+}
+
 function initPopups() {
   document.querySelectorAll('[data-pop]').forEach(a => a.onclick = e => {
     e.preventDefault();
@@ -48,6 +75,8 @@ function initTabs() {
 
 includePartials().then(() => {
   initGnb();
+  initScrollHeader();
+  initSplitReveal();
   initPopups();
   initTabs();
   if (typeof initNoticeList === 'function') { initNoticeList(); initNoticePopup(); }
