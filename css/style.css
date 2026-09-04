@@ -149,6 +149,7 @@ h4{font-size:23px;letter-spacing:-.01em}
 .cta-txt h2 span{display:inline-block;opacity:0;transform:translateY(.35em);
   transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.3,1)}
 .cta-txt h2.on span{opacity:1;transform:none}
+.cta-txt h2 .sp{margin-right:.05em}
 .cta-txt p{font-size:clamp(16px,1.5vw,20px);line-height:1.6;color:rgba(255,255,255,.66)}
 .cta-more{position:relative;flex:none;display:grid;place-items:center;width:200px;height:200px}
 .cta-more svg{position:absolute;inset:0;width:100%;height:100%;
@@ -188,26 +189,34 @@ dialog::backdrop{background:rgba(17,17,17,.6)}
 .pop-body p{margin-bottom:6px}
 .pop-body ul{margin:6px 0 6px 2px}
 .pop-body li{padding-left:10px;text-indent:-10px}
-footer{background:#1c1c1c}
+/* 푸터: 화면을 꽉 채우지 않는 라운드 카드. 밝은 페이지는 연회색, 어두운 페이지(.s3-page/.dark-foot)는 다크 */
+footer{background:#fff;padding-bottom:40px}
 footer .wrap{max-width:none;padding-left:40px;padding-right:40px}
-.f-card{color:rgba(255,255,255,.58);padding:64px 0 44px;font-size:14px}
-.f-head{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:48px}
-.f-logo{width:150px;opacity:.9}
-.f-top{display:flex;gap:26px;font-weight:700;color:#fff;font-size:13.5px}
-.f-top a:hover{color:#6db2ff}
+.f-card{background:#F1F1F1;color:#5b5b5b;border-radius:36px;padding:64px 56px 40px;font-size:15px}
+.f-logo{display:block;width:130px;margin-bottom:26px}
+.f-corp{margin-bottom:18px;font-size:14px;line-height:1.6}
+.f-corp i{opacity:.45;margin:0 8px;font-style:normal}
 .f-body{display:grid;grid-template-columns:1fr 2.1fr;gap:60px;
-  padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.12)}
-.f-info b{display:block;color:#fff;font-size:15px;font-weight:800;margin-bottom:14px}
-.f-info b.mt{margin-top:30px}
-.f-info p{margin-bottom:6px;line-height:1.6}
-.f-info a:hover{color:#6db2ff}
+  padding-bottom:44px;border-bottom:1px solid rgba(17,17,17,.14)}
+.f-info p{margin-bottom:8px;line-height:1.6}
+.f-info a:hover{color:var(--blue)}
 .f-map{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
-.f-map b{display:block;color:#fff;font-size:14px;font-weight:800;letter-spacing:.04em;margin-bottom:16px}
-.f-map a{display:block;margin-bottom:9px;line-height:1.5;font-size:13.5px}
-.f-map a:hover{color:#6db2ff}
-.f-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:26px;font-size:13px}
-.f-foot i{opacity:.35;margin:0 10px;font-style:normal}
+.f-map b{display:block;color:#111;font-size:16px;font-weight:800;letter-spacing:.04em;margin-bottom:18px}
+.f-map a{display:block;margin-bottom:11px;line-height:1.5;font-size:15px}
+.f-map a:hover{color:var(--blue)}
+.f-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:26px;font-size:13.5px}
+.f-top{display:flex;gap:28px;font-weight:700;color:#111}
+.f-top a:hover{color:var(--blue)}
 .f-copy{opacity:.7}
+
+.s3-page footer,.dark-foot footer{background:#05070d}
+.s3-page .f-card,.dark-foot .f-card{background:#1c1c1c;color:rgba(255,255,255,.62)}
+.s3-page .f-body,.dark-foot .f-body{border-bottom-color:rgba(255,255,255,.12)}
+.s3-page .f-map b,.dark-foot .f-map b,
+.s3-page .f-top,.dark-foot .f-top{color:#fff}
+.s3-page .f-info a:hover,.dark-foot .f-info a:hover,
+.s3-page .f-map a:hover,.dark-foot .f-map a:hover,
+.s3-page .f-top a:hover,.dark-foot .f-top a:hover{color:#6db2ff}
 .top-btn{position:fixed;right:32px;bottom:32px;z-index:90;width:48px;height:48px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px}
 @media(max-width:1024px){
   .mega-bg{display:none}
@@ -300,7 +309,8 @@ footer .wrap{max-width:none;padding-left:40px;padding-right:40px}
 .form .agree a{text-decoration:underline}
 .form .submit{text-align:center}
 @media(max-width:1024px){
-  .f-card{padding:44px 0 30px}
+  footer .wrap{padding-left:16px;padding-right:16px}
+  .f-card{padding:44px 24px 30px;border-radius:28px}
   .f-body{grid-template-columns:1fr;gap:36px}
   .f-map{grid-template-columns:repeat(2,1fr);gap:24px}
   .pills{padding:132px 0 0}

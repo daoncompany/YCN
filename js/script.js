@@ -46,7 +46,7 @@ function initSplitReveal() {
     if (el.dataset.split) return;
     el.dataset.split = '1';
     el.innerHTML = [...el.textContent].map((c, i) =>
-      `<span style="transition-delay:${i * 40}ms">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+      `<span class="${c === ' ' ? 'sp' : ''}" style="transition-delay:${i * 40}ms">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
   });
   const io = new IntersectionObserver((rows, ob) => {
     rows.forEach(r => { if (r.isIntersecting) { r.target.classList.add('on'); ob.unobserve(r.target); } });
