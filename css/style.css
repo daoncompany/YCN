@@ -193,7 +193,7 @@ dialog::backdrop{background:rgba(17,17,17,.6)}
 footer{background:#fff;padding-bottom:40px}
 footer .wrap{max-width:none;padding-left:40px;padding-right:40px}
 .f-card{background:#F1F1F1;color:#5b5b5b;border-radius:36px;padding:64px 56px 40px;font-size:15px}
-.f-logo{display:block;width:130px;margin-bottom:26px}
+.f-logo{display:block;width:130px;margin-bottom:26px;filter:grayscale(1)}
 .f-corp{margin-bottom:18px;font-size:14px;line-height:1.6}
 .f-corp i{opacity:.45;margin:0 8px;font-style:normal}
 .f-body{display:grid;grid-template-columns:1fr 2.1fr;gap:60px;
