@@ -80,7 +80,17 @@ h4{font-size:23px;letter-spacing:-.01em}
   38%,92%{flex-grow:1}
   100%{flex-grow:2.2}
 }
-@media(prefers-reduced-motion:reduce){.field{animation:none}}
+/* 카드 배경: 좁을 때 세로 크롭본, 넓어질 때 전체 이미지. fieldRoll과 같은 타이밍으로 교차 */
+.field>*{position:relative;z-index:1}
+.field .bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover}
+.field .wide{animation:fieldWide 9s ease-in-out infinite;animation-delay:inherit}
+.field::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75),rgba(0,0,0,.05) 60%)}
+@keyframes fieldWide{
+  0%,30%{opacity:1}
+  38%,92%{opacity:0}
+  100%{opacity:1}
+}
+@media(prefers-reduced-motion:reduce){.field,.field .wide{animation:none}}
 .field:nth-child(2){background:#1b1b1b}
 .field:nth-child(3){background:#242424}
 .field b{font-size:23px;font-weight:800;letter-spacing:-.01em}
@@ -240,6 +250,8 @@ footer .wrap{max-width:none;padding-left:40px;padding-right:40px}
   .contact .map{height:320px}
     .field-grid{flex-direction:column}
   .field{height:260px;flex:none;animation:none}
+  .field .wide{animation:none}
+  .field .bg:not(.wide){display:none}
   .hero{padding:140px 0 120px}
   .hero-visual .caption{display:none}
 }
