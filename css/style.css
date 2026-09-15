@@ -72,25 +72,14 @@ h4{font-size:23px;letter-spacing:-.01em}
 .fields h2 span{font-weight:400;color:var(--dim)}
 .field-grid{display:flex;gap:2px}
 .field{position:relative;flex:1 1 0;min-width:0;height:520px;background:var(--black);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;overflow:hidden;
-  animation:fieldRoll 9s ease-in-out infinite}
-.field:nth-child(2){animation-delay:-6s}
-.field:nth-child(3){animation-delay:-3s}
-@keyframes fieldRoll{
-  0%,30%{flex-grow:2.2}
-  38%,92%{flex-grow:1}
-  100%{flex-grow:2.2}
-}
-/* 카드 배경: 좁을 때 세로 크롭본, 넓어질 때 전체 이미지. fieldRoll과 같은 타이밍으로 교차 */
+  transition:flex-grow .6s ease}
+/* 평소엔 같은 폭, 마우스 올린 카드만 넓어짐. 이미지는 한 장을 cover로 가운데 크롭 */
+.field-grid .field:hover{flex-grow:2.2}
 .field>*{position:relative;z-index:1}
 .field .bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover}
-.field .wide{animation:fieldWide 9s ease-in-out infinite;animation-delay:inherit}
 .field::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75),rgba(0,0,0,.05) 60%)}
-@keyframes fieldWide{
-  0%,30%{opacity:1}
-  38%,92%{opacity:0}
-  100%{opacity:1}
-}
-@media(prefers-reduced-motion:reduce){.field,.field .wide{animation:none}}
+.field .num{font-size:13px;font-weight:800;letter-spacing:.04em}
+@media(prefers-reduced-motion:reduce){.field{transition:none}}
 .field:nth-child(2){background:#1b1b1b}
 .field:nth-child(3){background:#242424}
 .field b{font-size:23px;font-weight:800;letter-spacing:-.01em}
@@ -249,9 +238,7 @@ footer .wrap{max-width:none;padding-left:40px;padding-right:40px}
   .loc{grid-template-columns:repeat(2,1fr)}
   .contact .map{height:320px}
     .field-grid{flex-direction:column}
-  .field{height:260px;flex:none;animation:none}
-  .field .wide{animation:none}
-  .field .bg:not(.wide){display:none}
+  .field{height:260px;flex:none}
   .hero{padding:140px 0 120px}
   .hero-visual .caption{display:none}
 }
