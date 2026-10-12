@@ -74,14 +74,11 @@ h4{font-size:23px;letter-spacing:-.01em}
 .field{position:relative;flex:1 1 0;min-width:0;height:520px;background:var(--black);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;overflow:hidden;
   transition:flex-grow .6s ease}
 /* 평소엔 같은 폭, 마우스 올린 카드만 넓어짐. 이미지는 한 장을 cover로 가운데 크롭 */
-.field-grid .field:hover{flex-grow:2.2}
+.field:hover{flex-grow:2.2}
 .field>*{position:relative;z-index:1}
 .field .bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover}
 .field::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75),rgba(0,0,0,.05) 60%)}
 .field .num{font-size:13px;font-weight:800;letter-spacing:.04em}
-@media(prefers-reduced-motion:reduce){.field{transition:none}}
-.field:nth-child(2){background:#1b1b1b}
-.field:nth-child(3){background:#242424}
 .field b{font-size:23px;font-weight:800;letter-spacing:-.01em}
 .field p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.6);margin-top:8px;
   height:3.2em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -238,7 +235,7 @@ footer .wrap{max-width:none;padding-left:40px;padding-right:40px}
   .loc{grid-template-columns:repeat(2,1fr)}
   .contact .map{height:320px}
     .field-grid{flex-direction:column}
-  .field{height:260px;flex:none}
+  .field{height:260px}
   .hero{padding:140px 0 120px}
   .hero-visual .caption{display:none}
 }
