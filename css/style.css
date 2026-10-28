@@ -397,8 +397,7 @@ footer .wrap{max-width:none;padding-left:40px;padding-right:40px}
 .board-foot{display:flex;justify-content:flex-end;margin-top:28px}
 .s3{background:#05070d;color:#fff}
 .s3 h2,.s3 h3,.s3 h4{color:#fff;letter-spacing:-.03em}
-.s3 .ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;
-  font-size:13px;color:rgba(255,255,255,.42);text-align:center;padding:12px}
+.s3 .ph{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit}
 .s3-badge{display:inline-flex;align-items:center;height:38px;padding:0 22px;border-radius:999px;
   font-size:13px;font-weight:800;letter-spacing:-.01em;color:#fff;border:1px solid rgba(255,255,255,.22);
   background:rgba(255,255,255,.05)}
