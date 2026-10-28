@@ -431,8 +431,9 @@ footer .wrap{max-width:none;padding-left:40px;padding-right:40px}
 .s3-cta:hover{background:#3a92f5}
 .s3-cta.solid{background:#fff;color:#0b1220}
 .s3-cta.solid:hover{background:rgba(255,255,255,.85)}
-.s3-card{aspect-ratio:4/3;border-radius:14px;border:1px solid rgba(255,255,255,.14);
+.s3-card{border-radius:14px;border:1px solid rgba(255,255,255,.14);
   background:rgba(255,255,255,.035);box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.s3-card .ph{height:auto}
 .s3-grid{padding:40px 40px 110px}
 .s3-grid-h{font-size:clamp(26px,2.6vw,36px);text-align:center;margin-bottom:50px}
 .s3-grid ul{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
