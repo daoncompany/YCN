@@ -250,13 +250,13 @@ footer .wrap{max-width:none;padding-left:40px;padding-right:40px}
 .sub-head h2{margin-bottom:18px}
 .sub-head p{color:var(--dim)}
 .shot-lg{width:100%;display:block;border:1px solid var(--line);border-radius:8px}
-.feature{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:80px}
-.feature li{background:var(--black);color:#fff;padding:34px 30px;min-height:190px;
-  display:flex;flex-direction:column;justify-content:flex-end}
-.feature li:nth-child(2){background:#1b1b1b}
-.feature li:nth-child(3){background:#242424}
-.feature b{font-size:17px;font-weight:800;letter-spacing:-.01em}
-.feature p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.6);margin-top:8px}
+/* 3SZONE 하단 카드와 같은 모양, 흰 배경 (번호는 CSS 카운터 — 항목은 페이지당 3개) */
+.feature{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:80px;counter-reset:f}
+.feature li{padding:34px 30px 38px;border:1px solid var(--line);border-radius:12px;background:#fafafa}
+.feature li::before{counter-increment:f;content:'0' counter(f);
+  display:block;font-size:13px;font-weight:800;color:var(--blue);margin-bottom:16px}
+.feature b{display:block;font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:10px}
+.feature p{font-size:13px;line-height:1.6;color:var(--dim)}
 .hist{display:grid;grid-template-columns:148px 1fr;gap:72px;max-width:1060px;margin:0 auto}
 .hist-nav{position:sticky;top:120px;align-self:start;display:flex;flex-direction:column;gap:2px;
   padding:12px 10px;border-radius:16px;background:#f7f7f8}
