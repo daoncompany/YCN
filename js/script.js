@@ -73,12 +73,26 @@ function initTabs() {
   });
 }
 
+function initHistoryNav() {
+  const links = [...document.querySelectorAll('#histNav a')];
+  if (!links.length) return;
+  const secs = links.map(a => document.querySelector(a.hash));
+  const sync = () => {
+    let i = 0;
+    secs.forEach((s, n) => { if (s.getBoundingClientRect().top <= 160) i = n; });
+    links.forEach((a, n) => a.classList.toggle('on', n === i));
+  };
+  addEventListener('scroll', sync, { passive: true });
+  sync();
+}
+
 includePartials().then(() => {
   initGnb();
   initScrollHeader();
   initSplitReveal();
   initPopups();
   initTabs();
+  initHistoryNav();
   if (typeof initNoticeList === 'function') { initNoticeList(); initNoticePopup(); }
   if (typeof initAdminForm === 'function') initAdminForm();
 });
