@@ -257,6 +257,10 @@ footer .wrap{max-width:none;padding-left:40px;padding-right:40px}
   display:block;font-size:13px;font-weight:800;color:var(--blue);margin-bottom:16px}
 .feature b{display:block;font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:10px}
 .feature p{font-size:13px;line-height:1.6;color:var(--dim)}
+/* 시스템 상세: 이미지와 카드를 좌우로 나눠 이미지 폭을 줄인다 (해당 페이지만) */
+.sub-body:has(.feature){display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+.sub-body:has(.feature) .sub-head{grid-column:1/-1}
+.sub-body:has(.feature) .feature{grid-template-columns:1fr;gap:12px;margin-top:0}
 .hist{display:grid;grid-template-columns:148px 1fr;gap:72px;max-width:1060px;margin:0 auto}
 .hist-nav{position:sticky;top:120px;align-self:start;display:flex;flex-direction:column;gap:2px;
   padding:12px 10px;border-radius:16px;background:#f7f7f8}
@@ -314,6 +318,7 @@ footer .wrap{max-width:none;padding-left:40px;padding-right:40px}
   .pills{padding:132px 0 0}
   .sub-body{padding-block:48px 90px}
   .feature,.values,.intro{grid-template-columns:1fr}
+  .sub-body:has(.feature){grid-template-columns:1fr;gap:28px}
   .intro{gap:36px}
   .cert{grid-template-columns:repeat(2,1fr)}
   .hist{grid-template-columns:1fr;gap:28px}
