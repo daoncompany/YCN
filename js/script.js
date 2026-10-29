@@ -73,6 +73,19 @@ function initTabs() {
   });
 }
 
+function initHero() {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const sync = () => {
+    const s = Math.min(1, scrollY / (innerHeight * 1.8));
+    document.documentElement.style.setProperty('--s', s.toFixed(3));
+    document.body.classList.toggle('home-top', s < .35);
+  };
+  addEventListener('scroll', sync, { passive: true });
+  addEventListener('resize', sync);
+  sync();
+}
+
 function initHistoryNav() {
   const links = [...document.querySelectorAll('#histNav a')];
   if (!links.length) return;
@@ -88,6 +101,7 @@ function initHistoryNav() {
 
 includePartials().then(() => {
   initGnb();
+  initHero();
   initScrollHeader();
   initSplitReveal();
   initPopups();

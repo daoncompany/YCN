@@ -56,17 +56,39 @@ h4{font-size:23px;letter-spacing:-.01em}
 .sub a{display:block;font-size:14px;font-weight:500;color:var(--dim);padding:5px 0}
 .sub a:hover{color:var(--black);font-weight:700}
 .menu>li:nth-child(2) .sub{left:50%;transform:translateX(-50%)}
-.hero{padding-block:200px 120px;text-align:center}
-.hero .kicker{display:block;margin-bottom:22px}
-.hero h1{margin-bottom:56px}
-.hero-visual{position:relative;border:1px solid var(--line);background:#fafafa;aspect-ratio:16/7;
-  display:flex;align-items:center;justify-content:center}
-.hero-visual .caption{position:absolute;bottom:18px;right:22px}
-.mock{display:flex;align-items:flex-end;gap:18px;width:78%}
-.mock i{display:block;border:1px solid var(--line);background:#fff}
-.mock i:nth-child(1){flex:0 0 12%;aspect-ratio:9/16}
-.mock i:nth-child(2){flex:1;aspect-ratio:16/10;background:var(--black)}
-.mock i:nth-child(3){flex:0 0 14%;aspect-ratio:4/3}
+/* 히어로: 화면에 고정된 사진 위로 문구가 떠오르고,
+   스크롤하면 .flow 의 흰 그라데이션이 아래에서 밀고 올라오며 문구가 옅어진다.
+   --s 는 0~1 스크롤 진행도로 js/script.js 의 initHero() 가 넣어 준다. */
+.hero{position:fixed;inset:0 0 auto;z-index:0;height:100svh;
+  display:grid;place-content:center;text-align:center;color:#fff;
+  background:#05070d url(../images/hero.jpg) center/cover no-repeat}
+.hero::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(5,7,13,.62),rgba(5,7,13,.20) 48%,rgba(5,7,13,.72))}
+.hero-in{position:relative;z-index:1;
+  opacity:clamp(0,calc(1 - var(--s,0) * 2.2),1);
+  transform:translateY(calc(var(--s,0) * -120px))}
+.hero .kicker{display:block;margin-bottom:22px;color:#8fc2ff}
+.hero h1{color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.hero .kicker,.hero h1{animation:heroUp 1s cubic-bezier(.2,.7,.2,1) both}
+.hero h1{animation-delay:.14s}
+@keyframes heroUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+/* 본문 블록이 180svh 아래에서 시작하고, 그 위 80svh 를 흰 그라데이션이 채운다.
+   = 스크롤하면 흰색이 아래에서 밀고 올라오고, 다 차오르면 두 번째 섹션이 닿는다.
+   (80svh = 180svh - 100svh 이므로 맨 처음엔 화면 밖에 있다) */
+.flow{position:relative;z-index:1;margin-top:180svh;background:var(--white)}
+.flow::before{content:'';position:absolute;left:0;right:0;bottom:100%;height:80svh;
+  background:linear-gradient(180deg,rgba(255,255,255,0),var(--white))}
+/* 히어로 구간에서는 헤더를 사진 위에 얹는다 */
+.home-top .gnb{background:transparent;backdrop-filter:none;border-bottom-color:transparent}
+.home-top .gnb:hover,.home-top .gnb.open{background:rgba(5,7,13,.88);backdrop-filter:blur(12px);
+  border-bottom-color:rgba(255,255,255,.10)}
+@media (prefers-reduced-motion:reduce){
+  .hero{position:static;height:auto;padding-block:220px}
+  .flow{margin-top:0}
+  .flow::before{display:none}
+  .hero .kicker,.hero h1{animation:none}
+  .hero-in{opacity:1;transform:none}
+}
 .fields{padding-block:120px}
 .fields h2{margin-bottom:40px}
 .fields h2 span{font-weight:400;color:var(--dim)}
@@ -235,7 +257,6 @@ footer{background:#fff;padding-bottom:40px}
   .contact .map{height:320px}
     .field-grid{flex-direction:column}
   .field{height:260px}
-  .hero{padding-block:140px 120px}
   .hero-visual .caption{display:none}
 }
 .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding-block:150px 0}
@@ -443,12 +464,12 @@ footer{background:#fff;padding-bottom:40px}
   .s3-cta-box{padding-block:0 90px}
 }
 .s3-page .gnb{background:rgba(5,7,13,.88);border-bottom-color:rgba(255,255,255,.10)}
-.s3-page .menu>li>a{color:#fff}
+.s3-page .menu>li>a,.home-top .menu>li>a{color:#fff}
 .s3-page .menu>li>a:hover,.s3-page .menu>li.on>a{color:#6db2ff}
-.s3-page .hamb i{background:#fff}
-.s3-page .mega-bg{background:#0a0e17;border-bottom-color:rgba(255,255,255,.10)}
-.s3-page .sub a{color:rgba(255,255,255,.62)}
-.s3-page .sub a:hover{color:#fff;font-weight:700}
+.s3-page .hamb i,.home-top .hamb i{background:#fff}
+.s3-page .mega-bg,.home-top .mega-bg{background:#0a0e17;border-bottom-color:rgba(255,255,255,.10)}
+.s3-page .sub a,.home-top .sub a{color:rgba(255,255,255,.62)}
+.s3-page .sub a:hover,.home-top .sub a:hover{color:#fff;font-weight:700}
 @media (max-width:1024px){
   .s3-page .menu{background:#05070d}
   .s3-page .menu>li{border-bottom-color:rgba(255,255,255,.12)}
