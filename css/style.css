@@ -69,6 +69,7 @@ h4{font-size:23px;letter-spacing:-.01em}
   transform:translateY(calc(var(--s,0) * -120px))}
 .hero .kicker{display:block;margin-bottom:22px;color:#8fc2ff}
 .hero h1{color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.hero h1 .txt-blue{color:#8fc2ff}
 .hero .kicker,.hero h1{animation:heroUp 1s cubic-bezier(.2,.7,.2,1) both}
 .hero h1{animation-delay:.14s}
 @keyframes heroUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
