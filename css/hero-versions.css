@@ -1,0 +1,89 @@
+/* 메인 히어로 시안 V1·V2·V3 (v1.html · v2.html · v3.html 전용)
+   기존 index 의 고정 히어로(.hero) 대신 각 버전 히어로가 문서 흐름 안에 놓인다. */
+.hv .flow{margin-top:0}
+.hv .flow::before{display:none}
+
+/* ================= V1 · 콜라주 → 풀스크린 확장 (poscoflow 참고) ================= */
+.v1-hero{position:relative;height:280vh;background:#fff}
+.v1-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.v1-title{position:absolute;left:0;right:0;top:17vh;z-index:2;text-align:center;
+  font-size:clamp(38px,4.6vw,84px);font-weight:800;letter-spacing:-.035em;line-height:1.22;color:#111}
+.v1-title .ln{display:block;overflow:hidden;padding-bottom:.04em}
+.v1-title .ln>span{display:inline-block;animation:v1L 1s cubic-bezier(.2,.8,.2,1) .25s both}
+.v1-title .ln:last-child>span{animation-name:v1R;animation-delay:.32s}
+.v1-title em{font-style:normal;color:var(--blue)}
+@keyframes v1L{from{transform:translateX(-105%)}}
+@keyframes v1R{from{transform:translateX(105%)}}
+.v1-imgs{position:absolute;inset:0;animation:v1Up 1.1s cubic-bezier(.2,.8,.2,1) .1s both}
+@keyframes v1Up{from{transform:translateY(45vh)}}
+.v1-img{position:absolute;overflow:hidden;border-radius:16px;background:#e9ecf1}
+.v1-img img{width:100%;height:100%;object-fit:cover}
+.v1-img.c {left:34vw;width:32vw;top:44vh;height:72vh;background:none}
+.v1-img.tr{left:68vw;width:27.7vw;top:44vh;height:31vh}
+.v1-img.sr{left:68vw;width:19.3vw;top:79vh;height:23vh}
+.v1-img.lm{left:9.4vw;width:22.5vw;top:59vh;height:30vh}
+.v1-img.bl{left:4.2vw;width:27.7vw;top:93vh;height:30vh}
+/* 가운데 사진이 커지며 화면을 덮는 레이어 — clip-path 는 js 가 매 프레임 계산 */
+.v1-kv{position:absolute;inset:0;z-index:3;overflow:hidden;color:#fff;display:grid;place-content:center;text-align:center;
+  clip-path:inset(44vh 34vw 0 34vw round 16px)}
+.v1-kv>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 40%}
+.v1-kv::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,13,.55),rgba(5,7,13,.18) 50%,rgba(5,7,13,.7));opacity:var(--o,0)}
+.v1-copy{position:relative;z-index:1;padding:0 24px;opacity:0}
+.v1-copy .kicker{display:block;margin-bottom:22px;color:#8fc2ff}
+.v1-copy h1{color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.v1-copy h1 .txt-blue{color:#8fc2ff}
+.v1-cue{position:absolute;left:50%;bottom:28px;z-index:4;transform:translateX(-50%);
+  font-size:11px;font-weight:800;letter-spacing:.24em;color:rgba(17,17,17,.5);display:flex;flex-direction:column;align-items:center;gap:10px}
+.v1-cue i{width:1px;height:40px;background:currentColor;animation:cue 1.8s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+@media (max-width:767px){
+  .v1-hero{height:240vh}
+  .v1-title{top:15vh;font-size:clamp(34px,10vw,44px)}
+  .v1-img{border-radius:12px}
+  .v1-img.c {left:20vw;width:60vw;top:40vh;height:54vh}
+  .v1-img.tr{left:83vw;width:30vw;top:36vh;height:17vh}
+  .v1-img.sr{left:84vw;width:24vw;top:57vh;height:13vh}
+  .v1-img.lm{left:-9vw;width:26vw;top:48vh;height:15vh}
+  .v1-img.bl{left:-5vw;width:22vw;top:68vh;height:13vh}
+  .v1-kv{clip-path:inset(40vh 20vw 6vh 20vw round 12px)}
+}
+
+/* ================= V2 · 3SZONE 톤 + 선 다발 웨이브 (LX bg-wave 참고) ================= */
+.v2-hero{position:relative;height:100vh;height:100svh;min-height:600px;overflow:hidden;color:#fff;background:#05070d;
+  display:grid;place-content:center;text-align:center}
+.v2-hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(60% 60% at 50% 50%,rgba(0,72,168,.30) 0%,rgba(5,7,13,0) 70%)}
+.v2-wave{position:absolute;left:0;top:50%;width:100%;height:min(560px,62vh);transform:translateY(-46%);pointer-events:none}
+.v2-wave path{fill:none;stroke:url(#v2grad);stroke-width:1;vector-effect:non-scaling-stroke}
+.v2-copy{position:relative;z-index:1;padding:0 24px}
+.v2-copy .kicker{display:block;margin-bottom:22px;color:#7fd6e8}
+.v2-copy h1{color:#fff;text-shadow:0 2px 40px rgba(5,7,13,.8)}
+.v2-copy h1 b{font-weight:800;color:#7fd6e8}
+.v2-copy .kicker,.v2-copy h1{animation:heroUp 1s cubic-bezier(.2,.7,.2,1) both}
+.v2-copy h1{animation-delay:.14s}
+.v2-cue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);font-size:11px;font-weight:800;letter-spacing:.24em;
+  color:rgba(255,255,255,.55);display:flex;flex-direction:column;align-items:center;gap:10px}
+.v2-cue i{width:1px;height:40px;background:currentColor;animation:cue 1.8s ease-in-out infinite;transform-origin:top}
+
+/* ================= V3 · 쇼릴 영상 히어로 ================= */
+.v3.home-top .gnb{background:rgba(5,7,13,.92);backdrop-filter:blur(12px);border-bottom-color:rgba(255,255,255,.10)}
+.v3-hero{position:relative;height:100vh;height:100svh;padding-top:92px;background:#05070d}
+.v3-hero iframe{display:block;width:100%;height:100%;border:0}
+.v3-skip{position:absolute;right:28px;bottom:24px;z-index:2;height:36px;padding:0 16px;border:1px solid rgba(255,255,255,.35);
+  background:rgba(5,7,13,.55);color:#fff;font-size:12px;font-weight:800;letter-spacing:.14em}
+.v3-skip:hover{background:#fff;color:#05070d}
+@media (max-width:1024px){
+  .v3-hero{height:calc(56.25vw + 92px);min-height:0}
+  .v3-skip{right:12px;bottom:10px;height:30px;padding:0 12px;font-size:11px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .v1-hero{height:auto}
+  .v1-stick{position:relative;height:100svh}
+  .v1-title .ln>span,.v1-imgs,.v2-copy .kicker,.v2-copy h1{animation:none}
+}
+.v1-copy h1,.v2-copy h1{word-break:keep-all}
+@media (max-width:767px){
+  .v1-copy h1,.v2-copy h1{font-size:clamp(26px,8vw,34px)}
+  .v1-copy .kicker,.v2-copy .kicker{font-size:12px;letter-spacing:0;word-break:keep-all}
+}
