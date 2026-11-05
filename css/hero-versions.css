@@ -53,7 +53,7 @@
   display:grid;place-content:center;text-align:center}
 .v2-hero::before{content:'';position:absolute;inset:0;
   background:radial-gradient(60% 60% at 50% 50%,rgba(0,72,168,.30) 0%,rgba(5,7,13,0) 70%)}
-.v2-wave{position:absolute;left:0;top:50%;width:100%;height:min(560px,62vh);transform:translateY(-46%);pointer-events:none}
+.v2-wave{position:absolute;left:-8%;top:50%;width:116%;height:min(560px,62vh);transform:translateY(-46%);pointer-events:none}
 .v2-wave path{fill:none;stroke:url(#v2grad);stroke-width:1;vector-effect:non-scaling-stroke}
 .v2-copy{position:relative;z-index:1;padding:0 24px}
 .v2-copy .kicker{display:block;margin-bottom:22px;color:#7fd6e8}
@@ -81,10 +81,10 @@
 .v3.home-top .menu>li>a,.v3.home-top .sub a,.v3.home-top .hamb i{transition:color .3s,background .3s}
 @media (max-width:1024px){
   /* 모바일 전체 메뉴는 본문 글자가 비치면 읽기 어려워 진한 유리로 */
-  .v3.home-top .gnb.open{background:rgba(5,7,13,.96);-webkit-backdrop-filter:none;backdrop-filter:none}   /* 부모에 블러를 걸면 아래로 펼쳐지는 메뉴가 깨져 보임 */
-  .v3.home-top .menu{background:rgba(5,7,13,.96)}
+  .hv.home-top .gnb.open{background:rgba(5,7,13,.96);-webkit-backdrop-filter:none;backdrop-filter:none}   /* 부모에 블러를 걸면 아래로 펼쳐지는 메뉴가 깨져 보임 */
+  .hv.home-top .menu{background:rgba(5,7,13,.96)}
   .hv .menu>li:nth-child(2) .sub{transform:none}   /* PC용 가운데 정렬 이동값이 모바일 메뉴에도 남아 SYSTEM 하위 메뉴가 화면 밖으로 밀리던 것 */
-  .v3.home-top .menu>li{border-bottom-color:rgba(255,255,255,.14)}
+  .hv.home-top .menu>li{border-bottom-color:rgba(255,255,255,.14)}
   .v3.home-top.v3-light .gnb.open .menu>li>a{color:#fff}
   .v3.home-top.v3-light .gnb.open .sub a{color:rgba(255,255,255,.62)}
   .v3.home-top.v3-light .gnb.open .hamb i{background:#fff}
@@ -123,3 +123,6 @@
 /* 줄어드는 동안 카드와 같은 아래쪽 그늘을 서서히 입혀, 카드로 바꿔 끼우는 순간이 티 나지 않게 */
 .v1-kv::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(0,0,0,.75),rgba(0,0,0,.05) 60%);opacity:var(--o2,0)}
 .v1-copy{z-index:2}
+@media (max-width:767px){
+  .v2-wave{left:-90%;width:280%;height:min(440px,54vh)}   /* 좁은 화면에서 선 다발이 세로로 찌그러지고 양끝이 잘려 보이던 것 */
+}
