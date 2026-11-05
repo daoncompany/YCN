@@ -15,6 +15,8 @@ html,body{height:100%;background:#05070D;overflow:hidden}
 #stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:50% 50%;overflow:hidden;background:#05070D;
   font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;color:#fff;cursor:pointer;-webkit-font-smoothing:antialiased}
 .sc{position:absolute;inset:0;overflow:hidden;visibility:hidden}
+/* 요소는 항상 가운데 1920x1080 안전영역에, 배경은 화면(히어로) 전체로 */
+.safe{position:absolute;left:50%;top:50%;width:1920px;height:1080px;margin:-540px 0 0 -960px}
 .a{position:absolute}
 .fill{position:absolute;inset:0}
 .mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:14px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;line-height:1.7}
@@ -92,6 +94,8 @@ html,body{height:100%;background:#05070D;overflow:hidden}
 #s4{background:#05070D}
 #s4band{left:160px;top:380px;width:1600px;height:320px;border-radius:50%;
   background:radial-gradient(closest-side,rgba(0,46,113,1),rgba(0,46,113,.5) 50%,rgba(0,46,113,0));filter:blur(6px)}
+#s4vig::before,#s4vig::after{content:"";position:absolute;left:-3000px;right:-3000px;height:3000px;background:#05070D}
+#s4vig::before{bottom:100%}#s4vig::after{top:100%}   /* 화면이 16:9보다 세로로 길 때 목록 위·아래 가림 */
 #s4vig{background:linear-gradient(180deg,#05070D 0%,#05070D 12%,rgba(5,7,13,0) 38%,rgba(5,7,13,0) 62%,#05070D 88%,#05070D 100%)}
 #s4list{left:420px;top:0}
 .row{height:150px;font-size:92px;display:flex;align-items:center;color:#fff}
@@ -107,7 +111,7 @@ html,body{height:100%;background:#05070D;overflow:hidden}
 #s5year{left:104px;top:178px;font-size:340px;font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
 #s5serif{left:1150px;top:214px;font-size:100px}
 #s5serifS{left:1154px;top:440px;color:#05070D;opacity:.6;font-size:20px;font-weight:600;letter-spacing:-.01em}
-#s5track{left:0;top:640px;width:1920px;height:1px;background:rgba(5,7,13,.5)}
+#s5track{left:-3000px;top:640px;width:7920px;height:1px;background:rgba(5,7,13,.5)}
 #s5ruler{left:0;top:612px}
 .yt{position:absolute;top:0;width:260px}
 .yt .tk{position:absolute;left:0;top:14px;width:1px;height:28px;background:#05070D}
@@ -177,7 +181,7 @@ html,body{height:100%;background:#05070D;overflow:hidden}
 #hTL{left:84px;top:40px}#hTR{right:84px;top:40px;text-align:right}
 #hBL{left:84px;bottom:40px}#hBR{right:84px;bottom:40px;text-align:right}
 #hTC{left:50%;top:40px;transform:translateX(-50%)}
-#bar{position:absolute;left:560px;bottom:44px;width:800px;height:12px}
+#bar{position:absolute;left:50%;margin-left:-400px;bottom:44px;width:800px;height:12px}
 #bar .tr{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--hud);opacity:.3}
 #bar .tks{position:absolute;left:0;right:0;bottom:0;height:5px;opacity:.55;
   background:repeating-linear-gradient(90deg,var(--hud) 0 1px,transparent 1px calc(800px/15));background-size:calc(100% + 1px) 100%}
@@ -194,9 +198,10 @@ html,body{height:100%;background:#05070D;overflow:hidden}
 
 <!-- S1 · YCN -->
 <section class="sc" id="s1">
-  <div class="a mv" id="s1bloom"></div>
   <div class="grid dk"></div>
   <div class="fill" id="s1vig"></div>
+  <div class="safe">
+  <div class="a mv" id="s1bloom"></div>
   <div class="fill mv" id="s1c">
     <div class="a mono kick" style="color:rgba(255,255,255,.8)"><span>01</span><i></i><span>(주)와이씨앤 — YCN CO., LTD.</span></div>
     <div class="a g mv" id="s1ghost">YCN</div>
@@ -206,12 +211,14 @@ html,body{height:100%;background:#05070D;overflow:hidden}
     <div class="a mono" id="s1side">EST. 2011<br>Smart Safety<br>Integrated Control<br><span style="opacity:.55">Construction · Plant · Industry</span></div>
     <div class="a mono" id="s1pct"><b>000</b>System Boot %</div>
   </div>
+  </div>
 </section>
 
 <!-- S2 · PREDICT -->
 <section class="sc" id="s2">
-  <div class="a" id="s2haze"></div>
   <div class="grid lt"></div>
+  <div class="safe">
+  <div class="a" id="s2haze"></div>
   <div class="fill mv" id="s2c">
     <div class="a mono kick" style="color:#05070D"><span>02</span><i></i><span>AI Risk Forecast</span></div>
     <div class="a g mv" id="s2l1">위험을 먼저</div>
@@ -226,13 +233,15 @@ html,body{height:100%;background:#05070D;overflow:hidden}
       <div class="fld"><div class="vdots"></div><div class="mono">03 — Industry</div><b>산업</b><p>현장 전반의 안전 데이터를 통합 관리</p></div>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- S3 · 3SZONE -->
 <section class="sc" id="s3">
+  <div class="grid dk"></div>
+  <div class="safe">
   <div class="a mv" id="s3orb"></div>
   <div class="a mv" id="s3streak"></div>
-  <div class="grid dk"></div>
   <div class="fill mv" id="s3c">
     <div class="a mono kick" style="color:rgba(255,255,255,.85)"><span>03</span><i></i><span>3SZONE Solution Platform</span></div>
     <div class="a g mask" id="s3word"><span class="mv">3</span><span class="mv">S</span><span class="mv">Z</span><span class="mv">O</span><span class="mv">N</span><span class="mv">E</span></div>
@@ -240,12 +249,14 @@ html,body{height:100%;background:#05070D;overflow:hidden}
     <div class="a" id="s3side"><div class="mono" style="opacity:.75">Real-time Monitoring</div><b>흩어진 안전 데이터를<br>하나의 관제 화면으로</b></div>
     <div class="a" id="s3cards"></div>
   </div>
+  </div>
 </section>
 
 <!-- S4 · SYSTEM -->
 <section class="sc" id="s4">
-  <div class="a mv" id="s4band"></div>
   <div class="grid dk"></div>
+  <div class="safe">
+  <div class="a mv" id="s4band"></div>
   <div class="fill mv" id="s4c">
     <div class="a g mv" id="s4list"></div>
     <div class="fill" id="s4vig"></div>
@@ -257,11 +268,13 @@ html,body{height:100%;background:#05070D;overflow:hidden}
     <div class="a" id="s4num">01<small>/08</small></div>
     <div class="a" id="s4desc"><div class="mono" id="s4en">Integrated Safety Control</div><p id="s4p"></p></div>
   </div>
+  </div>
 </section>
 
 <!-- S5 · HISTORY -->
 <section class="sc" id="s5">
   <div class="grid lt"></div>
+  <div class="safe">
   <div class="fill mv" id="s5c">
     <div class="a mono kick" style="color:#05070D"><span>05</span><i></i><span>History — Since 2011</span></div>
     <div class="a g" id="s5year">2011</div>
@@ -277,11 +290,13 @@ html,body{height:100%;background:#05070D;overflow:hidden}
       <div class="st"><div class="vdots"></div><b data-n="6" data-p="0">0</b><div class="mono">Certifications · 공인 인증</div></div>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- S6 · PARTNER -->
 <section class="sc" id="s6">
   <div class="grid dk"></div>
+  <div class="safe">
   <div class="a g mq mv" id="mq1"></div>
   <div class="a g mq mv" id="mq2"></div>
   <div class="a g mq mv" id="mq3"></div>
@@ -290,23 +305,28 @@ html,body{height:100%;background:#05070D;overflow:hidden}
     <div id="s6sep"></div>
     <div id="s6txt"><div class="mono">06 — Our Partner</div><div class="serif">Trusted on every site.</div><p>건설 · 플랜트 · 발전 현장의 든든한 파트너</p></div>
   </div></div>
+  </div>
 </section>
 
 <!-- S7 · VALUE -->
 <section class="sc" id="s7">
   <div class="grid dk"></div>
+  <div class="safe">
   <div class="a" id="s7line"></div>
   <div class="a vw mv" id="w0"><div class="g mv">SAFETY</div><p>모든 판단의 기준을 안전에 둡니다.</p><span class="mono">Value 01 / 03</span></div>
   <div class="a vw mv" id="w1"><div class="serif mv">smart</div><p>AI와 IoT를 현장에 맞게, 정확도는 높게.</p><span class="mono">Value 02 / 03</span></div>
   <div class="a vw mv" id="w2"><div class="g mv">SOLUTION</div><p>제품이 아니라 현장의 문제를 해결합니다.</p><span class="mono">Value 03 / 03</span></div>
+  </div>
 </section>
 
 <!-- S8 · MISSION -->
 <section class="sc" id="s8">
+  <div class="safe">
   <div class="a mask" style="left:160px;top:350px;height:66px;width:1600px"><div class="mv" id="s8kick" style="position:absolute;left:0;top:4px">AI 기술로 위험을 예측하고, 한눈에 관리하는 안전</div></div>
   <div class="a" id="s8h"><span class="ln"><span class="mv">스마트 통합관제 솔루션으로</span></span><span class="ln"><span class="mv"><em>안전</em>을 완성합니다.</span></span></div>
   <div class="a" id="s8rule"></div>
   <div class="a mono" id="s8foot"><span>(주)와이씨앤 — YCN Co., Ltd.</span><span>02-882-9977</span><span style="text-transform:none">sales@ycnet.co.kr</span></div>
+  </div>
 </section>
 
 <div id="edge"></div>
@@ -314,8 +334,8 @@ html,body{height:100%;background:#05070D;overflow:hidden}
 <!-- HUD -->
 <div id="hud">
   <div class="cm tl"></div><div class="cm tr"></div><div class="cm bl"></div><div class="cm br"></div>
-  <div class="reg" style="left:20px;top:533px"></div><div class="reg" style="right:20px;top:533px"></div>
-  <div class="reg" style="left:953px;top:20px"></div><div class="reg" style="left:953px;bottom:20px"></div>
+  <div class="reg" style="left:20px;top:calc(50% - 7px)"></div><div class="reg" style="right:20px;top:calc(50% - 7px)"></div>
+  <div class="reg" style="left:calc(50% - 7px);top:20px"></div><div class="reg" style="left:calc(50% - 7px);bottom:20px"></div>
   <div class="a mono" id="hTL">YCN — Corporate Reel 2026</div>
   <div class="a mono" id="hTC">Smart Safety Integrated Control</div>
   <div class="a mono" id="hTR">SC 01/08 — YCN</div>
@@ -382,7 +402,10 @@ const tf=(el,s)=>{el.style.transform=s};
 
 /* ---- 스테이지 맞춤 ---- */
 const stage=$('#stage');
-const fit=()=>{const s=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform=`translate(-50%,-50%) scale(${s})`};
+const FILL=window!==parent||/[?&]fill/.test(location.search);   // 히어로에 넣으면 배경이 영역을 꽉 채움
+let SW=1920,SH=1080;
+const fit=()=>{const s=Math.min(innerWidth/1920,innerHeight/1080);if(FILL){SW=Math.ceil(innerWidth/s);SH=Math.ceil(innerHeight/s);}
+  stage.style.width=SW+'px';stage.style.height=SH+'px';stage.style.transform=`translate(-50%,-50%) scale(${s})`};
 addEventListener('resize',fit);fit();
 
 /* ================= 장면 빌드 ================= */
@@ -581,15 +604,15 @@ function clip(w,p){
     case 'B':return `inset(${(1-p)*100}% 0 0 0)`;
     case 'T':return `inset(0 0 ${(1-p)*100}% 0)`;
     case 'DG':{const a=p*140;return `polygon(0 0,${a}% 0,${a-40}% 100%,0 100%)`;}
-    case 'IR':return `circle(${p*1102}px at 960px 540px)`;   // % 단위는 backdrop-filter와 겹치면 아래 장면이 검게 빠짐
+    case 'IR':return `circle(${p*Math.hypot(SW,SH)*.51}px at ${SW/2}px ${SH/2}px)`;   // % 단위는 backdrop-filter와 겹치면 아래 장면이 검게 빠짐
   }
 }
 function setEdge(w,p){
   const o=Math.sin(Math.PI*clamp(p));
   if(!w||p<=0||p>=1||w==='IR'||w==='DG'){edge.style.opacity=0;return;}
   edge.style.opacity=o;
-  if(w==='R'||w==='L'){const x=w==='R'?(1-p)*1920:p*1920;Object.assign(edge.style,{left:(x-1)+'px',top:'0px',width:'2px',height:'1080px'});}
-  else{const y=w==='B'?(1-p)*1080:p*1080;Object.assign(edge.style,{left:'0px',top:(y-1)+'px',width:'1920px',height:'2px'});}
+  if(w==='R'||w==='L'){const x=w==='R'?(1-p)*SW:p*SW;Object.assign(edge.style,{left:(x-1)+'px',top:'0px',width:'2px',height:SH+'px'});}
+  else{const y=w==='B'?(1-p)*SH:p*SH;Object.assign(edge.style,{left:'0px',top:(y-1)+'px',width:SW+'px',height:'2px'});}
 }
 
 /* ---------- HUD ---------- */
