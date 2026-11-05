@@ -16,7 +16,7 @@ html,body{height:100%;background:#05070D;overflow:hidden}
   font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;color:#fff;cursor:pointer;-webkit-font-smoothing:antialiased}
 .sc{position:absolute;inset:0;overflow:hidden;visibility:hidden}
 /* 요소는 항상 가운데 1920x1080 안전영역에, 배경은 화면(히어로) 전체로 */
-.safe{position:absolute;left:50%;top:50%;width:1920px;height:1080px;margin:-540px 0 0 -960px}
+.safe{position:absolute;left:50%;top:50%;width:1920px;height:1080px;margin:calc(-540px + var(--oy,0px)) 0 0 -960px}
 .a{position:absolute}
 .fill{position:absolute;inset:0}
 .mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:14px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;line-height:1.7}
@@ -168,7 +168,7 @@ html,body{height:100%;background:#05070D;overflow:hidden}
 #s8foot{left:160px;top:794px;width:1600px;display:flex;justify-content:space-between;color:#05070D}
 
 /* ---------- HUD ---------- */
-#hud{position:absolute;left:50%;top:50%;width:1920px;height:1080px;margin:-540px 0 0 -960px;pointer-events:none;color:var(--hud);z-index:50}
+#hud{position:absolute;left:50%;top:50%;width:1920px;height:1080px;margin:calc(-540px + var(--oy,0px)) 0 0 -960px;pointer-events:none;color:var(--hud);z-index:50}
 #hud .mono{font-size:13px;letter-spacing:.14em;line-height:1}
 .cm{position:absolute;width:38px;height:38px;border-color:var(--hud);border-style:solid;border-width:0}
 .cm.tl{left:28px;top:28px;border-left-width:1px;border-top-width:1px}
@@ -404,7 +404,8 @@ const tf=(el,s)=>{el.style.transform=s};
 const stage=$('#stage');
 const FILL=window!==parent||/[?&]fill/.test(location.search);   // 히어로에 넣으면 배경이 영역을 꽉 채움
 let SW=1920,SH=1080;
-const fit=()=>{const s=Math.min(innerWidth/1920,innerHeight/1080)*(FILL?.94:1);if(FILL){SW=Math.ceil(innerWidth/s);SH=Math.ceil(innerHeight/s);}
+const TOP=+(new URLSearchParams(location.search).get('top')||0);   // 위에 투명 헤더가 덮는 높이(px) — 영상 영역은 그 아래 공간의 가운데로
+const fit=()=>{const s=Math.min(innerWidth/1920,(innerHeight-TOP)/1080)*(FILL?.94:1);if(FILL){SW=Math.ceil(innerWidth/s);SH=Math.ceil(innerHeight/s);}stage.style.setProperty('--oy',(TOP/2/s)+'px');
   stage.style.width=SW+'px';stage.style.height=SH+'px';stage.style.transform=`translate(-50%,-50%) scale(${s})`};
 addEventListener('resize',fit);fit();
 
@@ -622,7 +623,7 @@ $('#bar .tks').style.background=`repeating-linear-gradient(90deg,var(--hud) 0 1p
 let hudCur=-1;
 function HUD(t,T){
   let c=0;SC.forEach((s,i)=>{if(t>=s.a+(s.b-s.a)*.72)c=i;});
-  if(c!==hudCur){hudCur=c;stage.style.setProperty('--hud',SC[c].hud);hTR.textContent=`SC ${String(c+1).padStart(2,'0')}/08 — ${SC[c].n}`;}
+  if(c!==hudCur){hudCur=c;stage.style.setProperty('--hud',SC[c].hud);hTR.textContent=`SC ${String(c+1).padStart(2,'0')}/08 — ${SC[c].n}`;if(window!==parent)parent.postMessage({ycnHud:SC[c].hud},'*');}   // 히어로 헤더 글자색을 장면 밝기에 맞추도록 알림
   const fr=Math.min(Math.round(T*30),Math.round(REAL*30)),ss=Math.floor(fr/30),ff=fr%30;
   hBL.textContent=`TC 00:00:${String(ss).padStart(2,'0')}:${String(ff).padStart(2,'0')}`;
   const w=T/REAL*800;fl.style.width=w+'px';ph.style.left=w+'px';

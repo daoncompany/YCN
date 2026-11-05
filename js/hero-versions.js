@@ -130,6 +130,7 @@
     addEventListener('message', e => {
       // 사용자가 이미 내려가 있으면 끌어내리지 않는다
       if (e.data === 'ycn-reel-end' && scrollY < v3.offsetHeight * .5) next();
+      if (e.data && e.data.ycnHud) document.body.classList.toggle('v3-light', e.data.ycnHud === '#05070D');   // 흰 장면 → 헤더 글자 먹색
     });
     v3.querySelector('.v3-skip').onclick = next;
     const h = () => headerOver(v3.getBoundingClientRect().bottom > 92);
