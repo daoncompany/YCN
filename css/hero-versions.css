@@ -4,7 +4,7 @@
 .hv .flow::before{display:none}
 
 /* ================= V1 · 콜라주 → 풀스크린 확장 (poscoflow 참고) ================= */
-.v1-hero{position:relative;height:280vh;background:#fff}
+.v1-hero{position:relative;height:440vh;background:#fff}
 .v1-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .v1-title{position:absolute;left:0;right:0;top:17vh;z-index:2;text-align:center;
   font-size:clamp(38px,4.6vw,84px);font-weight:800;letter-spacing:-.035em;line-height:1.22;color:#111}
@@ -24,7 +24,7 @@
 .v1-img.lm{left:9.4vw;width:22.5vw;top:59vh;height:30vh}
 .v1-img.bl{left:4.2vw;width:27.7vw;top:93vh;height:30vh}
 /* 가운데 사진이 커지며 화면을 덮는 레이어 — clip-path 는 js 가 매 프레임 계산 */
-.v1-kv{position:absolute;inset:0;z-index:3;overflow:hidden;color:#fff;display:grid;place-content:center;text-align:center;
+.v1-kv{position:absolute;left:0;top:0;width:100%;height:100%;z-index:3;overflow:hidden;color:#fff;display:grid;place-content:center;text-align:center;
   clip-path:inset(44vh 34vw 0 34vw round 16px)}
 .v1-kv>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 40%}
 .v1-kv::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,13,.55),rgba(5,7,13,.18) 50%,rgba(5,7,13,.7));opacity:var(--o,0)}
@@ -37,7 +37,7 @@
 .v1-cue i{width:1px;height:40px;background:currentColor;animation:cue 1.8s ease-in-out infinite;transform-origin:top}
 @keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
 @media (max-width:767px){
-  .v1-hero{height:240vh}
+  .v1-hero{height:400vh}
   .v1-title{top:15vh;font-size:clamp(34px,10vw,44px)}
   .v1-img{border-radius:12px}
   .v1-img.c {left:20vw;width:60vw;top:40vh;height:54vh}
@@ -87,3 +87,17 @@
   .v1-copy h1,.v2-copy h1{font-size:clamp(26px,8vw,34px)}
   .v1-copy .kicker,.v2-copy .kicker{font-size:12px;letter-spacing:0;word-break:keep-all}
 }
+
+/* V1 — 두 번째 섹션(분야 카드)이 히어로 스테이지 안에 대기. 큰 플랜트 사진이 줄어들어 가운데 카드 자리에 안착한다 */
+.v1-fields{position:absolute;left:0;right:0;top:0;bottom:0;z-index:1;margin:0 auto;
+  display:flex;flex-direction:column;justify-content:center;padding-block:110px 56px}
+.v1-fields h2{margin-bottom:36px}
+.v1-fields .field{height:min(520px,calc(100vh - 380px));height:min(520px,calc(100svh - 380px))}
+@media (max-width:1024px){
+  .v1-fields{padding-block:100px 28px}
+  .v1-fields h2{font-size:clamp(24px,6.6vw,34px);margin-bottom:22px}
+  .v1-fields .field{flex:0 0 auto;height:calc((100vh - 290px) / 3);height:calc((100svh - 290px) / 3);padding:20px 22px}   /* 세로 배치에서 flex-basis 0 때문에 납작해지던 것 방지 */
+}
+/* 줄어드는 동안 카드와 같은 아래쪽 그늘을 서서히 입혀, 카드로 바꿔 끼우는 순간이 티 나지 않게 */
+.v1-kv::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(0,0,0,.75),rgba(0,0,0,.05) 60%);opacity:var(--o2,0)}
+.v1-copy{z-index:2}
