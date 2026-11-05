@@ -168,7 +168,7 @@ html,body{height:100%;background:#05070D;overflow:hidden}
 #s8foot{left:160px;top:794px;width:1600px;display:flex;justify-content:space-between;color:#05070D}
 
 /* ---------- HUD ---------- */
-#hud{position:absolute;inset:0;pointer-events:none;color:var(--hud);z-index:50}
+#hud{position:absolute;left:50%;top:50%;width:1920px;height:1080px;margin:-540px 0 0 -960px;pointer-events:none;color:var(--hud);z-index:50}
 #hud .mono{font-size:13px;letter-spacing:.14em;line-height:1}
 .cm{position:absolute;width:38px;height:38px;border-color:var(--hud);border-style:solid;border-width:0}
 .cm.tl{left:28px;top:28px;border-left-width:1px;border-top-width:1px}
@@ -404,7 +404,7 @@ const tf=(el,s)=>{el.style.transform=s};
 const stage=$('#stage');
 const FILL=window!==parent||/[?&]fill/.test(location.search);   // 히어로에 넣으면 배경이 영역을 꽉 채움
 let SW=1920,SH=1080;
-const fit=()=>{const s=Math.min(innerWidth/1920,innerHeight/1080);if(FILL){SW=Math.ceil(innerWidth/s);SH=Math.ceil(innerHeight/s);}
+const fit=()=>{const s=Math.min(innerWidth/1920,innerHeight/1080)*(FILL?.94:1);if(FILL){SW=Math.ceil(innerWidth/s);SH=Math.ceil(innerHeight/s);}
   stage.style.width=SW+'px';stage.style.height=SH+'px';stage.style.transform=`translate(-50%,-50%) scale(${s})`};
 addEventListener('resize',fit);fit();
 
