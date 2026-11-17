@@ -164,31 +164,27 @@
   .v4-pills li{height:46px;padding:0 20px;font-size:14px}
 }
 @media (max-width:1024px){
+  .fields .field{flex:none}
   .v4-why{grid-template-columns:1fr;gap:40px;padding-block:100px}
   .v4-mon ul{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:900px){
   .v4-hero{--cw:clamp(96px,26vw,150px)}
-  .v4-title{text-align:center}
-  .v4-title span{left:0!important;right:0!important}
-  .v4-title .l{top:auto;bottom:calc(50% + var(--cw) * .75 + 70px)}
-  .v4-title .r{bottom:auto;top:calc(50% + var(--cw) * .75 + 60px)}
+  /* PC 처럼 위 문장은 왼쪽, 아래 문장은 오른쪽 */
+  .v4-title span{left:24px!important;right:24px!important}
+  .v4-title .l{text-align:left;top:auto;bottom:calc(50% + var(--cw) * .75 + 70px)}
+  .v4-title .r{text-align:right;bottom:auto;top:calc(50% + var(--cw) * .75 + 60px)}
   .v4-one{padding-top:90px}
   .v4-one h2{margin-bottom:40px}
   .v4-one-band{--sw:82vw;padding-block:36px}
   .v4-track{gap:14px}
-  .v4-slide{aspect-ratio:4/5}
-  .v4-slide div{padding:60px 22px 22px}
-  .v4-slide p{font-size:14px}
+  .v4-slide{aspect-ratio:4/3}
+  .v4-slide div{padding:50px 20px 18px}
+  .v4-slide p{font-size:13px;line-height:1.5}
   .v4-nav{width:44px;height:44px}
   .v4-nav.prev{left:12px}.v4-nav.next{right:12px}
   .v4-sys,.v4-zone{padding-block:90px}
-  .v4-dia{aspect-ratio:auto}
-  .v4-core{position:relative;inset:auto;width:min(100%,420px);aspect-ratio:1;margin:0 auto}
-  .v4-core .c1{width:100%}.v4-core .c2{width:80%}.v4-core .c3{width:64%}
-  .v4-hub{width:48%}
-  .v4-pills{position:static;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
-  .v4-pills li{position:static;transform:none;height:44px;padding:0 18px;font-size:14px}
+  .v4-pills li{height:44px;padding:0 18px;font-size:14px}
   .v4-partner-sub{margin:-36px 0 40px;font-size:15px}
   .v4-band{padding:90px 0 120px}
   .v4-eff ul{grid-template-columns:repeat(2,1fr)}
@@ -200,6 +196,27 @@
   .v4-why-list li{gap:20px;padding:24px 0}
   .v4-ic{width:60px;height:60px}
   .v4-why-list h3{font-size:20px}
-  .v4-sys-grid,.v4-mon ul,.v4-eff ul{grid-template-columns:1fr}
-  .v4-sys-grid a{padding:26px 24px 28px}
+  .v4-mon ul,.v4-eff ul{grid-template-columns:1fr}
+  /* Our System: PC 처럼 격자 유지(2열), 카드는 작게 */
+  .v4-sys-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .v4-sys-grid a{padding:20px 16px 22px}
+  .v4-sys-grid .v4-ic{width:42px;height:42px;margin-bottom:16px}
+  .v4-sys-grid .v4-ic .ico{width:20px;height:20px}
+  .v4-sys-grid h3{font-size:15px;line-height:1.35;word-break:keep-all}
+  .v4-sys-grid p{font-size:12.5px;line-height:1.5;word-break:keep-all}
+  /* 3SZONE: PC 처럼 위성이 원 위에 돈다. 정사각 상자라 가로·세로 반지름이 같다 */
+  .v4-dia{aspect-ratio:1}
+  .v4-core .c1{width:70%}.v4-core .c2{width:57%}.v4-core .c3{width:47%}
+  .v4-hub{width:40%}
+  .v4-hub b{font-size:24px}.v4-hub span{font-size:11px;margin-top:3px}
+  .v4-pills li{left:calc(50% + 35% * cos(var(--a)));top:calc(50% + 35% * sin(var(--a)));
+    height:30px;padding:0 10px;gap:5px;font-size:11px;box-shadow:0 8px 18px rgba(5,7,13,.16)}
+  .v4-pills .ico{width:13px;height:13px}
+  /* 분야 카드: 납작해지지 않게(기존 flex:1 1 0 이 세로 배치에서 높이를 0 으로 만든다) */
+  .fields .field{flex:none;height:200px;padding:22px}
+  .fields h2{word-break:keep-all}
+  .field b{font-size:20px}.field p{font-size:13px}
+  /* 고객사 로고: PC 처럼 촘촘한 격자(3열) */
+  .partner .roll{grid-template-columns:repeat(3,1fr);gap:8px}
+  .partner .roll span{padding:0 10px;border-radius:16px;height:58px}
 }
