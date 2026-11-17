@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>(주)와이씨앤 | 스마트 통합관제 솔루션 — 메인 시안 V4</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/style.css?v=202610301509">
+<link rel="stylesheet" href="css/v4.css?v=202611177">
+</head>
+<body class="dark-foot home-top">
+
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-cycle" viewBox="0 0 24 24"><path d="M20.5 12a8.5 8.5 0 0 1-14.6 5.9L3.5 15.5"/><path d="M3.5 20.5v-5h5"/><path d="M3.5 12a8.5 8.5 0 0 1 14.6-5.9l2.4 2.4"/><path d="M20.5 3.5v5h-5"/></symbol>
+  <symbol id="i-network" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.6"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="m6.5 6.5 3.6 3.6M17.5 6.5l-3.6 3.6M6.5 17.5l3.6-3.6M17.5 17.5l-3.6-3.6"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3 2.5 8 12 13l9.5-5z"/><path d="m2.5 12.5 9.5 5 9.5-5"/><path d="m2.5 16.5 9.5 5 9.5-5"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 3.8 5.6 3.8 9S14.6 18.4 12 21c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="m7 12.5 3-3 2.2 2.2L16.5 7.5"/></symbol>
+  <symbol id="i-access" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="10" r="2.5"/><path d="M8 16.5a4 4 0 0 1 8 0"/></symbol>
+  <symbol id="i-cctv" viewBox="0 0 24 24"><path d="m3.5 6.5 13 3.6-1.7 5.2L2.5 11.5z"/><path d="m16.6 12.3 3.4 1-1 3.1-3-.9"/><path d="M6 13.4V19M3 19h6"/></symbol>
+  <symbol id="i-sensor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.8"/><path d="M8.6 15.4a4.8 4.8 0 0 1 0-6.8M15.4 8.6a4.8 4.8 0 0 1 0 6.8M5.6 18.4a9 9 0 0 1 0-12.8M18.4 5.6a9 9 0 0 1 0 12.8"/></symbol>
+  <symbol id="i-ai" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9.5 2.5V6M14.5 2.5V6M9.5 18v3.5M14.5 18v3.5M2.5 9.5H6M2.5 14.5H6M18 9.5h3.5M18 14.5h3.5"/><path d="m9.6 15 2.4-6 2.4 6M10.4 13h3.2"/></symbol>
+  <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 2.5 20.5 7.3v9.4L12 21.5l-8.5-4.8V7.3z"/><path d="M3.5 7.3 12 12l8.5-4.7M12 12v9.5"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8 8h5M8 12h8M8 16h3.5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6"/></symbol>
+</svg>
+
+<div data-include="partials/header.html"></div>
+
+<!-- 히어로: 현장 사진 18장이 휘어진 원통 띠로 돌고, 뒤로 파란 물결 선이 흐른다 -->
+<section class="v4-hero" id="about">
+  <canvas class="v4-wave" aria-hidden="true"></canvas>
+  <div class="v4-stage" aria-hidden="true">
+    <div class="v4-tilt">
+      <div class="v4-ring">
+        <figure style="--i:0"><img src="images/ring/01.webp" alt=""></figure>
+        <figure style="--i:1"><img src="images/ring/02.webp" alt=""></figure>
+        <figure style="--i:2"><img src="images/ring/03.webp" alt=""></figure>
+        <figure style="--i:3"><img src="images/ring/04.webp" alt=""></figure>
+        <figure style="--i:4"><img src="images/ring/05.webp" alt=""></figure>
+        <figure style="--i:5"><img src="images/ring/06.webp" alt=""></figure>
+        <figure style="--i:6"><img src="images/ring/07.webp" alt=""></figure>
+        <figure style="--i:7"><img src="images/ring/08.webp" alt=""></figure>
+        <figure style="--i:8"><img src="images/ring/09.webp" alt=""></figure>
+        <figure style="--i:9"><img src="images/ring/10.webp" alt=""></figure>
+        <figure style="--i:10"><img src="images/ring/11.webp" alt=""></figure>
+        <figure style="--i:11"><img src="images/ring/12.webp" alt=""></figure>
+        <figure style="--i:12"><img src="images/ring/13.webp" alt=""></figure>
+        <figure style="--i:13"><img src="images/ring/14.webp" alt=""></figure>
+        <figure style="--i:14"><img src="images/ring/15.webp" alt=""></figure>
+        <figure style="--i:15"><img src="images/ring/16.webp" alt=""></figure>
+        <figure style="--i:16"><img src="images/ring/17.webp" alt=""></figure>
+        <figure style="--i:17"><img src="images/ring/18.webp" alt=""></figure>
+      </div>
+    </div>
+  </div>
+  <h1 class="v4-title wrap">
+    <span class="l">한눈에 관리하는</span>
+    <span class="r">스마트한 <em>안전관리</em></span>
+  </h1>
+  <div class="v4-cue" aria-hidden="true"><span>SCROLL</span><i></i></div>
+</section>
+
+<main>
+
+<!-- WHY YCN -->
+<section class="v4-why wrap">
+  <div class="v4-why-head v4-rv">
+    <span class="kicker">WHY YCN</span>
+    <p class="v4-sub">와이씨앤을 선택하는 네 가지 이유</p>
+    <h2><span class="v4-lead">각 현장의 위험 요인에 맞춰,<br>설계부터 설치, 운영, 유지보수까지</span><span class="txt-blue">맞춤형 스마트 솔루션</span>을 제공합니다.</h2>
+  </div>
+  <ul class="v4-why-list">
+    <li class="v4-rv"><span class="v4-ic"><svg class="ico"><use href="#i-cycle"/></svg></span><div><h3>원스톱 서비스</h3><p>설계, 설치, 관리, 운영, 철거까지</p></div></li>
+    <li class="v4-rv"><span class="v4-ic"><svg class="ico"><use href="#i-network"/></svg></span><div><h3>통합 플랫폼</h3><p>현장의 모든 데이터를 하나로<br>통합해 실시간으로 관제</p></div></li>
+    <li class="v4-rv"><span class="v4-ic"><svg class="ico"><use href="#i-layers"/></svg></span><div><h3>현장 맞춤 구성</h3><p>각 현장상황에 따른 맞춤형 솔루션 제공</p></div></li>
+    <li class="v4-rv"><span class="v4-ic"><svg class="ico"><use href="#i-globe"/></svg></span><div><h3>전국 운영 체계</h3><p>전문 인력이 전국 현장의<br>설치와 A/S 유지보수</p></div></li>
+  </ul>
+</section>
+
+<section class="fields wrap">
+  <h2>YCN의 AI기반 솔루션은<br><span>다양한 분야에 접목할 수 있습니다</span></h2>
+  <div class="field-grid">
+    <div class="field"><img class="bg" src="images/field/construction-wide.jpg" alt="" loading="lazy"><span class="num">01</span><b style="margin-top:14px">건설</b><p>건설현장의 위험 요소를 실시간으로 감지하고 통제합니다.</p></div>
+    <div class="field"><img class="bg" src="images/field/plant-wide.jpg" alt="" loading="lazy"><span class="num">02</span><b style="margin-top:14px">플랜트</b><p>플랜트 설비의 상태를 상시 모니터링해 사고를 예방합니다.</p></div>
+    <div class="field"><img class="bg" src="images/field/industry-wide.jpg" alt="" loading="lazy"><span class="num">03</span><b style="margin-top:14px">산업</b><p>산업현장 전반의 안전 데이터를 통합해 관리합니다.</p></div>
+  </div>
+</section>
+
+<!-- 원스톱 슬라이드 -->
+<section class="v4-one">
+  <h2 class="wrap v4-rv"><span class="v4-lead">현장에 필요한 안전 서비스를 한 번에,</span><span class="txt-blue">원스톱 안전관리 솔루션</span>을 제공합니다.</h2>
+  <div class="v4-one-band">
+    <div class="v4-track" id="oneTrack">
+      <a href="3szone.html" class="v4-slide"><img src="images/system/control.jpg" alt="" loading="lazy"><div><b>안전 통합관제 (3S ZONE)</b><p>현장의 모든 데이터를 하나로 통합해 실시간으로 관제</p></div></a>
+      <a href="system-attendance.html" class="v4-slide"><img src="images/system/attendance.jpg" alt="" loading="lazy"><div><b>출역 관리 시스템</b><p>출입구에서 시작되는 안전, 정확한 인원 관리와 전자카드제 대응</p></div></a>
+      <a href="system-video.html" class="v4-slide"><img src="images/system/video.jpg" alt="" loading="lazy"><div><b>영상 관제 시스템</b><p>사각지대 없는 실시간 영상 관제와 양방향 현장 소통</p></div></a>
+      <a href="system-sensor.html" class="v4-slide"><img src="images/system/sensor.jpg" alt="" loading="lazy"><div><b>센서 관제 시스템</b><p>보이지 않는 위험까지 데이터로 읽고 즉시 대응</p></div></a>
+      <a href="system-ai.html" class="v4-slide"><img src="images/system/ai.jpg" alt="" loading="lazy"><div><b>AI 솔루션</b><p>24시간 멈추지 않는 AI 영상 분석, 감지에서 대응까지</p></div></a>
+      <a href="system-twin.html" class="v4-slide"><img src="images/system/twin.jpg" alt="" loading="lazy"><div><b>디지털 트윈 시스템</b><p>현장을 가상공간에 똑같이 구현해 분석 · 예측까지</p></div></a>
+      <a href="system-process.html" class="v4-slide"><img src="images/system/process.jpg" alt="" loading="lazy"><div><b>건설 공정관리 플랫폼</b><p>3D 공정 시각화로 계획부터 안전까지 한 번에 관리</p></div></a>
+      <a href="system-location.html" class="v4-slide"><img src="images/system/location.jpg" alt="" loading="lazy"><div><b>위치 관제 솔루션</b><p>사람 · 차량 · 장비의 위치를 실시간으로 파악하는 위치 관제</p></div></a>
+    </div>
+    <button class="v4-nav prev" type="button" aria-label="이전"><svg class="ico"><use href="#i-left"/></svg></button>
+    <button class="v4-nav next" type="button" aria-label="다음"><svg class="ico"><use href="#i-right"/></svg></button>
+  </div>
+</section>
+
+<!-- 시스템 8개 메뉴 카드 -->
+<section class="v4-sys wrap" id="system">
+  <div class="v4-rv">
+    <span class="kicker">YCN Smart System</span>
+    <h2>Our System</h2>
+  </div>
+  <ul class="v4-sys-grid">
+    <li class="v4-rv"><a href="3szone.html" class="dark"><span class="v4-ic"><svg class="ico"><use href="#i-monitor"/></svg></span><h3>안전 통합관제 (3S ZONE)</h3><p>현장의 모든 데이터를 하나로<br>통합해 실시간으로 관제</p></a></li>
+    <li class="v4-rv"><a href="system-attendance.html"><span class="v4-ic"><svg class="ico"><use href="#i-access"/></svg></span><h3>출역 관리 시스템</h3><p>출입구에서 시작되는 안전, 정확한 인원 관리와 전자카드제 대응</p></a></li>
+    <li class="v4-rv"><a href="system-video.html"><span class="v4-ic"><svg class="ico"><use href="#i-cctv"/></svg></span><h3>영상 관제 시스템</h3><p>사각지대 없는 실시간 영상 관제와<br>양방향 현장 소통</p></a></li>
+    <li class="v4-rv"><a href="system-sensor.html"><span class="v4-ic"><svg class="ico"><use href="#i-sensor"/></svg></span><h3>센서 관제 시스템</h3><p>보이지 않는 위험까지 데이터로 읽고<br>즉시 대응</p></a></li>
+    <li class="v4-rv"><a href="system-ai.html"><span class="v4-ic"><svg class="ico"><use href="#i-ai"/></svg></span><h3>AI 솔루션</h3><p>24시간 멈추지 않는 AI 영상 분석,<br>감지에서 대응까지</p></a></li>
+    <li class="v4-rv"><a href="system-twin.html"><span class="v4-ic"><svg class="ico"><use href="#i-cube"/></svg></span><h3>디지털 트윈 시스템</h3><p>현장을 가상공간에 똑같이 구현해 분석 · 예측까지</p></a></li>
+    <li class="v4-rv"><a href="system-process.html"><span class="v4-ic"><svg class="ico"><use href="#i-chart"/></svg></span><h3>건설 공정관리 플랫폼</h3><p>3D 공정 시각화로 계획부터 안전까지 한 번에 관리</p></a></li>
+    <li class="v4-rv"><a href="system-location.html"><span class="v4-ic"><svg class="ico"><use href="#i-pin"/></svg></span><h3>위치 관제 솔루션</h3><p>사람 · 차량 · 장비의 위치를 실시간으로 파악하는 위치 관제</p></a></li>
+  </ul>
+</section>
+
+<!-- 3SZONE 원형 도식 -->
+<section class="v4-zone" id="zone">
+  <h2 class="wrap v4-rv"><span class="v4-lead">모든 데이터를 한눈에 모니터링,<br>사전에 예측해 방지할 수 있는</span><span class="txt-blue">선제적 안전관리</span> 구현</h2>
+  <div class="v4-dia wrap">
+    <div class="v4-core">
+      <i class="c1"></i><i class="c2"></i><i class="c3"></i>
+      <a href="3szone.html" class="v4-hub"><b>3SZONE</b><span>통합모니터링<br>솔루션</span></a>
+    </div>
+    <ul class="v4-pills">
+      <li style="--k:0"><svg class="ico"><use href="#i-access"/></svg>출입관제시스템</li>
+      <li style="--k:1"><svg class="ico"><use href="#i-cctv"/></svg>영상관제시스템</li>
+      <li style="--k:2"><svg class="ico"><use href="#i-sensor"/></svg>센서관제시스템</li>
+      <li style="--k:3"><svg class="ico"><use href="#i-chart"/></svg>공정관리</li>
+      <li style="--k:4"><svg class="ico"><use href="#i-pin"/></svg>위치관제시스템</li>
+      <li style="--k:5"><svg class="ico"><use href="#i-ai"/></svg>AI 솔루션</li>
+      <li style="--k:6"><svg class="ico"><use href="#i-cube"/></svg>디지털트윈</li>
+    </ul>
+  </div>
+  <p class="v4-zone-more"><a href="3szone.html" class="btn-text">3SZONE 더 알아보기 →</a></p>
+</section>
+
+<section class="partner">
+  <h2>YCN과 함께하는 고객사</h2>
+  <p class="v4-partner-sub">더 큰 안전의 가치를 함께 만들어갑니다.</p>
+  <div class="roll wrap" id="roll">
+    <span style="--sr:1.601;--k:1.041"><img src="images/partner/posco-enc.png" alt="포스코 E&C" loading="lazy"></span>
+    <span style="--sr:1.581;--k:1.300"><img src="images/partner/sk-ecoplant.png" alt="SK Ecoplant" loading="lazy"></span>
+    <span style="--sr:1.448;--k:1.041"><img src="images/partner/posco-dx.png" alt="포스코 DX" loading="lazy"></span>
+    <span style="--sr:1.937;--k:1.078"><img src="images/partner/kowepo.png" alt="한국서부발전" loading="lazy"></span>
+    <span style="--sr:1.462;--k:1.229"><img src="images/partner/sk-shieldus.png" alt="SK 쉴더스" loading="lazy"></span>
+    <span style="--sr:2.179;--k:0.806"><img src="images/partner/bando.png" alt="반도건설" loading="lazy"></span>
+    <span style="--sr:3.020;--k:0.904"><img src="images/partner/kospo.png" alt="한국남부발전" loading="lazy"></span>
+    <span style="--sr:1.732;--k:1.011"><img src="images/partner/lotte.png" alt="롯데건설" loading="lazy"></span>
+    <span style="--sr:2.915;--k:0.963"><img src="images/partner/ewp.png" alt="한국동서발전" loading="lazy"></span>
+    <span style="--sr:1.651;--k:1.224"><img src="images/partner/happynarae.png" alt="행복나래" loading="lazy"></span>
+    <span style="--sr:2.652;--k:0.660"><img src="images/partner/doosan.png" alt="두산에너빌리티" loading="lazy"></span>
+    <span style="--sr:3.009;--k:0.894"><img src="images/partner/hanshin.png" alt="한신공영" loading="lazy"></span>
+    <span style="--sr:2.177;--k:1.249"><img src="images/partner/shinsegae.png" alt="신세계건설" loading="lazy"></span>
+    <span style="--sr:2.373;--k:0.989"><img src="images/partner/gcem.png" alt="GC 녹십자EM" loading="lazy"></span>
+    <span style="--sr:1.968;--k:0.887"><img src="images/partner/sgc.png" alt="SGC E&C" loading="lazy"></span>
+    <span style="--sr:2.128;--k:0.780"><img src="images/partner/hyundai.png" alt="현대건설" loading="lazy"></span>
+    <span style="--sr:1.837;--k:0.927"><img src="images/partner/ssangyong.png" alt="쌍용건설" loading="lazy"></span>
+    <span style="--sr:2.011;--k:0.980"><img src="images/partner/daewoo.png" alt="대우건설" loading="lazy"></span>
+    <span style="--sr:2.192;--k:0.914"><img src="images/partner/hanyang.png" alt="한양건설" loading="lazy"></span>
+    <span style="--sr:1.894;--k:1.100"><img src="images/partner/isu.png" alt="이수건설" loading="lazy"></span>
+  </div>
+</section>
+
+<!-- 하단 문의 유도 띠 -->
+<section class="v4-band">
+  <h2 class="wrap"><span class="v4-rv v4-lead">YCN의 맞춤형 통합안전관리 솔루션으로</span><span class="v4-rv">편리하고 <a href="inquiry.html" class="txt-blue">스마트한 안전관리</a>를 경험해보세요.</span></h2>
+</section>
+
+<section class="cta-us" id="contact">
+  <img src="images/3s-ring.png" alt="" class="cta-bg" aria-hidden="true">
+  <div class="wrap cta-in">
+    <div class="cta-txt">
+      <h2 class="split">CONTACT US</h2>
+      <p>연구 · 개발부터 구축 · 유지보수 및 운영까지<br>AI 스마트 안전기술을 기반한 통합 안전관리 솔루션을 제공해드립니다.</p>
+    </div>
+    <a href="inquiry.html" class="cta-more" aria-label="문의하기">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <defs><path id="cta-circle" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+        <text><textPath href="#cta-circle">CONTACT US · CONTACT US · CONTACT US · </textPath></text>
+      </svg>
+      <i></i>
+    </a>
+  </div>
+</section>
+</main>
+
+<div data-include="partials/footer.html"></div>
+
+<script src="js/notice.js?v=202610301509"></script>
+<script src="js/script.js?v=202610301509"></script>
+<script src="js/v4.js?v=202611176"></script>
+</body>
+</html>
