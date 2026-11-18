@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>빛 효과 시안 비교</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{--blue:#002F73;--sky:#4FA3FF}
+*{box-sizing:border-box;margin:0}
+body{font-family:Pretendard,sans-serif;background:#fff;color:#111;padding:40px 16px 80px}
+.wrap{max-width:1100px;margin:0 auto}
+h1{font-size:24px;margin-bottom:6px}
+.lead{color:#666;font-size:14px;margin-bottom:40px}
+h2{font-size:18px;margin:48px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.card{border:1px solid #e5e7eb;border-radius:12px;padding:28px 20px 20px;display:flex;flex-direction:column;align-items:center;gap:18px}
+.card b{font-size:15px}
+.card small{color:#555;font-size:13px;text-align:center;line-height:1.5}
+.tag{font-size:12px;font-weight:800;color:#fff;background:var(--blue);border-radius:4px;padding:2px 8px}
+
+/* ── YCN 글자 ── */
+.ycn{font-size:72px;font-weight:900;letter-spacing:.04em;color:var(--blue);line-height:1}
+
+/* A. 빛줄기가 글자 위를 스치고 지나감 */
+.ycn.a{background:linear-gradient(110deg,var(--blue) 40%,#9fd0ff 50%,var(--blue) 60%) 0 0/250% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:sweep 3.5s ease-in-out infinite}
+@keyframes sweep{0%,30%{background-position:100% 0}100%{background-position:-50% 0}}
+
+/* B. 글자 주변이 숨쉬듯 은은하게 발광 */
+.ycn.b{animation:breathe 3s ease-in-out infinite}
+@keyframes breathe{0%,100%{text-shadow:0 0 0 rgba(79,163,255,0)}50%{text-shadow:0 0 18px rgba(79,163,255,.55),0 0 36px rgba(79,163,255,.25)}}
+
+/* C. 남색↔하늘색 그라데이션이 천천히 흐름 */
+.ycn.c{background:linear-gradient(90deg,var(--blue),#1f6fd1,var(--sky),#1f6fd1,var(--blue)) 0 0/300% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 6s linear infinite}
+@keyframes flow{to{background-position:300% 0}}
+
+/* D. 스윕 + 발광 같이 (가장 화려) */
+.ycn.d{background:linear-gradient(110deg,var(--blue) 40%,#cfe6ff 50%,var(--blue) 60%) 0 0/250% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 0 rgba(79,163,255,0));animation:sweep 3.5s ease-in-out infinite,dglow 3.5s ease-in-out infinite}
+@keyframes dglow{0%,30%{filter:drop-shadow(0 0 0 rgba(79,163,255,0))}65%{filter:drop-shadow(0 0 12px rgba(79,163,255,.6))}100%{filter:drop-shadow(0 0 0 rgba(79,163,255,0))}}
+
+/* ── 아이콘 원 ── */
+.icons{display:flex;gap:14px}
+.ic{position:relative;width:52px;height:52px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ic svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:1}
+.icons .ic:nth-child(2){--d:.4s}.icons .ic:nth-child(3){--d:.8s}.icons .ic:nth-child(4){--d:1.2s}
+
+/* 1. 원 안으로 빛줄기가 차례로 지나감 */
+.i1 .ic::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.45) 50%,transparent 65%);
+  transform:translateX(-120%);animation:isweep 3.2s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes isweep{0%{transform:translateX(-120%)}35%,100%{transform:translateX(120%)}}
+
+/* 2. 원 바깥으로 하늘색 빛이 차례로 번짐 */
+.i2 .ic{overflow:visible;animation:halo 3.2s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes halo{0%,60%,100%{box-shadow:0 0 0 0 rgba(79,163,255,0)}25%{box-shadow:0 0 18px 4px rgba(79,163,255,.55)}}
+
+/* 3. 물결 링이 퍼져나감 */
+.i3 .ic{overflow:visible}
+.i3 .ic::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--sky);opacity:0;animation:ring 3.2s ease-out infinite;animation-delay:var(--d,0s)}
+@keyframes ring{0%{transform:scale(1);opacity:.7}45%,100%{transform:scale(1.6);opacity:0}}
+
+/* 4. 남색 → 밝은 파랑으로 차례로 밝아짐 */
+.i4 .ic{animation:lit 3.2s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes lit{0%,60%,100%{background:var(--blue)}25%{background:#1f6fd1}}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}
+@media (max-width:480px){.ycn{font-size:60px}.icons{gap:10px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-cycle" viewBox="0 0 24 24"><path d="M20.5 12a8.5 8.5 0 0 1-14.6 5.9L3.5 15.5"/><path d="M3.5 20.5v-5h5"/><path d="M3.5 12a8.5 8.5 0 0 1 14.6-5.9l2.4 2.4"/><path d="M20.5 3.5v5h-5"/></symbol>
+  <symbol id="i-network" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.6"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="m6.5 6.5 3.6 3.6M17.5 6.5l-3.6 3.6M6.5 17.5l3.6-3.6M17.5 17.5l-3.6-3.6"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3 2.5 8 12 13l9.5-5z"/><path d="m2.5 12.5 9.5 5 9.5-5"/><path d="m2.5 16.5 9.5 5 9.5-5"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 3.8 5.6 3.8 9S14.6 18.4 12 21c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></symbol>
+</svg>
+<div class="wrap">
+  <h1>"은은한 빛 번쩍" 효과 시안</h1>
+  <p class="lead">YCN 글자 A~D, 아이콘 원 1~4 중 하나씩 골라주세요. (예: "A + 2")</p>
+
+  <h2>① YCN 글자</h2>
+  <div class="grid">
+    <div class="card"><span class="tag">A</span><div class="ycn a">YCN</div><b>빛줄기 스윕</b><small>밝은 빛 띠가 글자 위를<br>왼→오로 스치고 지나감</small></div>
+    <div class="card"><span class="tag">B</span><div class="ycn b">YCN</div><b>숨쉬는 발광</b><small>글자 주변이 하늘색으로<br>천천히 밝아졌다 꺼짐</small></div>
+    <div class="card"><span class="tag">C</span><div class="ycn c">YCN</div><b>그라데이션 흐름</b><small>남색↔하늘색이<br>글자 안에서 계속 흐름</small></div>
+    <div class="card"><span class="tag">D</span><div class="ycn d">YCN</div><b>스윕 + 발광</b><small>A와 B를 합친 버전<br>가장 눈에 띔</small></div>
+  </div>
+
+  <h2>② 아이콘 원</h2>
+  <div class="grid">
+    <div class="card i1"><span class="tag">1</span><div class="icons"><span class="ic"><svg><use href="#i-cycle"/></svg></span><span class="ic"><svg><use href="#i-network"/></svg></span><span class="ic"><svg><use href="#i-layers"/></svg></span><span class="ic"><svg><use href="#i-globe"/></svg></span></div><b>원 안 빛줄기</b><small>원 안으로 빛이 스치고,<br>위에서부터 차례로</small></div>
+    <div class="card i2"><span class="tag">2</span><div class="icons"><span class="ic"><svg><use href="#i-cycle"/></svg></span><span class="ic"><svg><use href="#i-network"/></svg></span><span class="ic"><svg><use href="#i-layers"/></svg></span><span class="ic"><svg><use href="#i-globe"/></svg></span></div><b>바깥 빛 번짐</b><small>원 둘레로 하늘색 빛이<br>퍼졌다 사라짐</small></div>
+    <div class="card i3"><span class="tag">3</span><div class="icons"><span class="ic"><svg><use href="#i-cycle"/></svg></span><span class="ic"><svg><use href="#i-network"/></svg></span><span class="ic"><svg><use href="#i-layers"/></svg></span><span class="ic"><svg><use href="#i-globe"/></svg></span></div><b>물결 링</b><small>얇은 테두리가<br>파동처럼 퍼져나감</small></div>
+    <div class="card i4"><span class="tag">4</span><div class="icons"><span class="ic"><svg><use href="#i-cycle"/></svg></span><span class="ic"><svg><use href="#i-network"/></svg></span><span class="ic"><svg><use href="#i-layers"/></svg></span><span class="ic"><svg><use href="#i-globe"/></svg></span></div><b>차례로 밝아짐</b><small>남색이 밝은 파랑으로<br>잠깐 켜졌다 돌아옴</small></div>
+  </div>
+</div>
+</body>
+</html>
