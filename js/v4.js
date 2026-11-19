@@ -90,10 +90,17 @@
   /* ---------- 원스톱 슬라이드 ---------- */
   const track = document.getElementById('oneTrack');
   if (track) {
+    /* 끝없이 도는 슬라이드: 8장 앞뒤에 복사본을 한 벌씩 붙여 가운데 벌에서 시작한다.
+       그래서 첫 화면 왼쪽에 맨 끝(위치 관제)이 보이고, 복사본 벌로 넘어가면 같은 장의 원본으로 몰래 옮긴다 */
+    const orig = [...track.children], N = orig.length;
+    const clone = s => { const c = s.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.tabIndex = -1; return c; };
+    track.prepend(...orig.map(clone));
+    track.append(...orig.map(clone));
     const slides = [...track.children];
     const band = track.parentElement;
     const prev = band.querySelector('.prev'), next = band.querySelector('.next');
-    let cur = 0;
+    let cur = N, settle;
+    const left = s => s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2;
     const sync = () => {
       const c = track.scrollLeft + track.clientWidth / 2;
       let best = 0, d = Infinity;
@@ -103,22 +110,27 @@
       });
       cur = best;
       slides.forEach((s, i) => s.classList.toggle('on', i === cur));
-      prev.disabled = cur === 0;
-      next.disabled = cur === slides.length - 1;
     };
-    const go = i => {
-      const s = slides[Math.max(0, Math.min(slides.length - 1, i))];
-      track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+    const jump = i => {                                  // 애니메이션 없이 같은 장의 원본 자리로
+      track.classList.add('jump');
+      track.scrollTo({ left: left(slides[i]), behavior: 'auto' });
+      sync();
+      requestAnimationFrame(() => requestAnimationFrame(() => track.classList.remove('jump')));
     };
+    const recenter = () => { if (cur < N || cur >= 2 * N) jump(N + (cur % N)); };
+    const go = i => track.scrollTo({ left: left(slides[i]), behavior: reduce ? 'auto' : 'smooth' });
     prev.onclick = () => go(cur - 1);
     next.onclick = () => go(cur + 1);
     // 옆 카드를 누르면 이동만 하고, 가운데 카드만 상세 페이지로 간다
     slides.forEach((s, i) => s.addEventListener('click', e => { if (i !== cur) { e.preventDefault(); go(i); } }));
-    track.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
-    addEventListener('resize', sync);
-    sync();
+    track.addEventListener('scroll', () => {
+      requestAnimationFrame(sync);
+      clearTimeout(settle); settle = setTimeout(recenter, 160);
+    }, { passive: true });
+    addEventListener('resize', () => jump(N + (cur % N)));
+    jump(N);
 
-    // 자동 롤링: 보이는 동안 4초마다 다음 장, 끝이면 처음으로. 마우스를 올리거나 만지면 쉰다
+    // 자동 롤링: 보이는 동안 4초마다 다음 장. 마우스를 올리거나 만지면 쉰다
     if (!reduce) {
       let seen = false, hold = false;
       new IntersectionObserver(([e]) => { seen = e.isIntersecting; }, { threshold: .4 }).observe(band);
@@ -126,7 +138,7 @@
       band.addEventListener('pointerleave', () => { hold = false; });
       band.addEventListener('focusin', () => { hold = true; });
       band.addEventListener('focusout', () => { hold = false; });
-      setInterval(() => { if (seen && !hold && !document.hidden) go(cur === slides.length - 1 ? 0 : cur + 1); }, 4000);
+      setInterval(() => { if (seen && !hold && !document.hidden) go(cur + 1); }, 4000);
     }
   }
 

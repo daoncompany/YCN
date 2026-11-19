@@ -45,13 +45,27 @@
 
 /* ---------- WHY YCN ---------- */
 .v4-why{display:grid;grid-template-columns:1fr minmax(0,560px);gap:80px;align-items:center;padding-block:140px}
-.v4-sub{font-size:15px;font-weight:700;color:var(--dim);margin:10px 0 36px}
 .v4-why-list li{display:flex;align-items:center;gap:28px;padding:30px 0;border-bottom:1px solid var(--line)}
 .v4-why-list li:last-child{border-bottom:0}
 .v4-why-list h3,.v4-sys-grid h3{font-size:23px;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
 .v4-why-list p{font-size:15px;line-height:1.6;color:var(--dim)}
 .v4-ic{flex:none;display:grid;place-items:center;width:72px;height:72px;border-radius:50%;background:var(--blue);color:#fff}
 .v4-ic .ico{width:30px;height:30px}
+/* 큰 YCN 옆에 앞 문장, 그 아래 큰 줄. YCN 위로 빛줄기가 스친다(시안 A) */
+.v4-why-top{display:flex;align-items:center;gap:clamp(18px,1.8vw,30px);margin-bottom:.45em}
+.v4-why-top .v4-lead{margin:0}
+.v4-ycn{flex:none;font-size:clamp(56px,5.4vw,96px);font-weight:900;letter-spacing:.04em;line-height:1;color:var(--blue);
+  background:linear-gradient(110deg,var(--blue) 40%,#9fd0ff 50%,var(--blue) 60%) 0 0/250% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:ycnSweep 3.5s ease-in-out infinite}
+@keyframes ycnSweep{0%,30%{background-position:100% 0}100%{background-position:-50% 0}}
+/* 아이콘 원: 위에서부터 차례로 밝은 파랑으로 켜졌다 돌아온다(시안 4) */
+.v4-why-list .v4-ic{animation:icLit 3.2s ease-in-out infinite}
+.v4-why-list li:nth-child(2) .v4-ic{animation-delay:.4s}
+.v4-why-list li:nth-child(3) .v4-ic{animation-delay:.8s}
+.v4-why-list li:nth-child(4) .v4-ic{animation-delay:1.2s}
+@keyframes icLit{0%,60%,100%{background:var(--blue)}25%{background:#1f7ae0}}
+@media (prefers-reduced-motion:reduce){.v4-ycn,.v4-why-list .v4-ic{animation:none}.v4-ycn{background-position:100% 0}}
+
 
 /* ---------- 원스톱 슬라이드 ---------- */
 .v4-one{padding-top:120px}
@@ -63,6 +77,7 @@
 .v4-slide{position:relative;flex:none;width:var(--sw);aspect-ratio:16/9;border-radius:12px;overflow:hidden;
   scroll-snap-align:center;background:var(--black);opacity:.45;transform:scale(.94);transition:opacity .5s,transform .5s}
 .v4-slide.on{opacity:1;transform:none}
+.v4-track.jump .v4-slide{transition:none}
 .v4-slide img{width:100%;height:100%;object-fit:cover}
 .v4-slide div{position:absolute;left:0;right:0;bottom:0;padding:80px 36px 30px;color:#fff;
   background:linear-gradient(to top,rgba(5,7,13,.82),rgba(5,7,13,0))}
@@ -86,9 +101,9 @@
 .v4-sys-grid .v4-ic .ico{width:26px;height:26px}
 .v4-sys-grid h3{font-size:20px}
 .v4-sys-grid p{font-size:15px;line-height:1.6;color:var(--dim)}
-.v4-sys-grid a.dark{background:#05070d;border-color:#05070d;color:#fff}
-.v4-sys-grid a.dark .v4-ic{background:var(--blue);color:#fff}
-.v4-sys-grid a.dark p{color:rgba(255,255,255,.6)}
+.v4-sys-grid a.dark{background:#1f7ae0;border-color:#1f7ae0;color:#fff}
+.v4-sys-grid a.dark .v4-ic{background:#fff;color:#1f7ae0}
+.v4-sys-grid a.dark p{color:rgba(255,255,255,.82)}
 @media (hover:hover){.v4-sys-grid a:hover{border-color:var(--blue);transform:translateY(-4px)}}
 
 /* ---------- 3SZONE 원형 도식 ---------- */
@@ -103,24 +118,27 @@
 .v4-core .c2{width:44%;aspect-ratio:1}
 .v4-core .c3{width:36%;aspect-ratio:1;border-style:dotted;border-width:3px;border-color:rgba(0,47,115,.2);animation:orbSpin 60s linear infinite reverse}
 @keyframes orbSpin{to{transform:rotate(360deg)}}
-.v4-hub{display:flex;flex-direction:column;align-items:center;justify-content:center;width:27%;aspect-ratio:1;border-radius:50%;
-  background:var(--blue);color:#fff;text-align:center;box-shadow:0 30px 60px rgba(5,7,13,.18)}
-.v4-hub b{font-size:clamp(30px,3.6vw,48px);font-weight:900;letter-spacing:-.02em;line-height:1.1}
-.v4-hub span{font-size:15px;font-weight:700;line-height:1.4;color:rgba(255,255,255,.8);margin-top:6px}
+.v4-hub{--g:clamp(3px,.9vw,9px);display:flex;align-items:center;justify-content:center;width:27%;aspect-ratio:1;border-radius:50%;
+  color:#fff;text-align:center;
+  background:radial-gradient(circle at 50% 28%,#2f76cc 0%,#4d8fd6 38%,#8dbde4 78%,#a9d0ec 100%);
+  box-shadow:0 0 0 var(--g) rgba(96,150,214,.34),0 0 0 calc(var(--g) * 2.2) rgba(140,184,228,.30),
+    0 0 0 calc(var(--g) * 3.6) rgba(188,214,240,.34),0 0 0 calc(var(--g) * 5.2) rgba(226,238,250,.55),0 20px 60px rgba(31,122,224,.22)}
+.v4-hub b{font-size:clamp(30px,3.4vw,46px);font-weight:800;letter-spacing:-.01em;line-height:1.1}
+.v4-hub em{font-style:normal;color:#99ffcc}
 .v4-pills{position:absolute;inset:0}
 /* 위성 7개: 바깥 점선 원(.c1, 지름 = 상자 폭의 56%) 위에 위에서부터 시계 방향으로 360°/7 간격.
    상자가 10:7 이라 가로 반지름 28%(폭 기준) = 세로 40%(높이 기준)로 같은 원이 된다 */
 .v4-pills li{--a:calc(-90deg + var(--k) * 360deg / 7);position:absolute;
   left:calc(50% + 28% * cos(var(--a)));top:calc(50% + 40% * sin(var(--a)));transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:12px;
-  height:54px;padding:0 28px;border-radius:999px;white-space:nowrap;background:#05070d;color:#fff;
-  font-size:15px;font-weight:800;letter-spacing:-.01em;box-shadow:0 14px 30px rgba(5,7,13,.18)}
-.v4-pills .ico{width:20px;height:20px;color:#8fc2ff}
+  height:54px;padding:0 28px;border-radius:999px;white-space:nowrap;background:#1f7ae0;color:#fff;
+  font-size:15px;font-weight:800;letter-spacing:-.01em;box-shadow:0 14px 30px rgba(31,122,224,.25)}
+.v4-pills .ico{width:20px;height:20px;color:rgba(255,255,255,.9)}
 .v4-zone-more{text-align:center;margin-top:24px}
 @media (prefers-reduced-motion:reduce){.v4-core i,.v4-ring{animation:none}}
 
 /* ---------- 고객사 · 하단 띠 ---------- */
 .v4-partner-sub{text-align:center;font-size:17px;font-weight:700;color:var(--dim);margin:-40px 0 56px}
-.v4-band{position:relative;overflow:hidden;padding:130px 0 170px;text-align:center}
+.v4-band{position:relative;overflow:hidden;padding:80px 0 220px;text-align:center}
 .v4-band::before{content:'';position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(70% 80% at 50% 100%,rgba(0,72,168,.22),rgba(255,255,255,0) 68%)}
 .v4-band h2{position:relative;line-height:1.4}
@@ -186,13 +204,16 @@
   .v4-sys,.v4-zone{padding-block:90px}
   .v4-pills li{height:44px;padding:0 18px;font-size:14px}
   .v4-partner-sub{margin:-36px 0 40px;font-size:15px}
-  .v4-band{padding:90px 0 120px}
+  .v4-band{padding:60px 0 150px}
   .v4-eff ul{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:560px){
   .wrap.v4-title{padding:0}
   .v4-why h2,.v4-one h2,.v4-zone h2,.v4-band h2{font-size:24px}
   .v4-lead{font-size:16px}
+  .v4-ycn{font-size:46px}
+  .v4-why-top{gap:14px}
+  .v4-why-top .v4-lead{font-size:14px}
   .v4-why-list li{gap:20px;padding:24px 0}
   .v4-ic{width:60px;height:60px}
   .v4-why-list h3{font-size:20px}
@@ -208,12 +229,12 @@
   .v4-dia{aspect-ratio:1}
   .v4-core .c1{width:70%}.v4-core .c2{width:57%}.v4-core .c3{width:47%}
   .v4-hub{width:40%}
-  .v4-hub b{font-size:24px}.v4-hub span{font-size:11px;margin-top:3px}
+  .v4-hub b{font-size:22px}
   .v4-pills li{left:calc(50% + 35% * cos(var(--a)));top:calc(50% + 35% * sin(var(--a)));
-    height:30px;padding:0 10px;gap:5px;font-size:11px;box-shadow:0 8px 18px rgba(5,7,13,.16)}
+    height:30px;padding:0 10px;gap:5px;font-size:11px;box-shadow:0 8px 18px rgba(31,122,224,.22)}
   .v4-pills .ico{width:13px;height:13px}
   /* 분야 카드: 납작해지지 않게(기존 flex:1 1 0 이 세로 배치에서 높이를 0 으로 만든다) */
-  .fields .field{flex:none;height:200px;padding:22px}
+  .fields .field{flex:none;height:200px;padding:22px 24px}
   .fields h2{word-break:keep-all}
   .field b{font-size:20px}.field p{font-size:13px}
   /* 고객사 로고: PC 처럼 촘촘한 격자(3열) */
