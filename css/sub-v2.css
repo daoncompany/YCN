@@ -1,0 +1,171 @@
+/* 하위 페이지 시안 V2(회사소개 · 시스템 7개) — style.css 토큰(--blue, --black, --dim, --line, .wrap, .kicker, .pills, .sub-head)만 쓴다 */
+.ico{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sv{padding-block:70px 0;word-break:keep-all}
+.sv img{display:block;max-width:100%}
+
+/* 소개: 왼쪽 글, 오른쪽 사진 */
+.sv-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:64px;align-items:center}
+.sv-intro h3{font-size:clamp(24px,2vw,30px);line-height:1.4;letter-spacing:-.025em;margin-bottom:22px}
+.sv-intro p{font-size:16px;line-height:1.85;color:#333}
+.sv-intro img{width:100%;border-radius:12px}
+
+/* 소제목: 아래 파란 줄 */
+.sv-sec{margin-top:110px}
+.sv-h{display:inline-block;font-size:24px;font-weight:800;letter-spacing:-.02em;padding-bottom:8px;
+  border-bottom:2px solid var(--blue);margin-bottom:32px}
+
+/* 도입 효과 카드 */
+.sv-eff{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
+.sv-eff li{padding:26px 22px 32px;border:1px solid #e3e6ea;border-radius:14px;background:#fff;
+  box-shadow:0 6px 18px rgba(17,17,17,.04)}
+.sv-eff b{display:block;font-size:14px;font-weight:800;color:var(--blue);margin-bottom:14px}
+.sv-eff p{font-size:16px;line-height:1.6;color:#222}
+
+/* 제품 구성 카드 */
+.sv-grp{display:block;font-size:15px;font-weight:800;color:var(--blue);margin:44px 0 22px}
+.sv-h+.sv-grp{margin-top:8px}
+.sv-prod{display:flex;flex-wrap:wrap;gap:20px}
+.sv-prod.c{justify-content:center}
+.sv-prod li{width:calc((100% - 60px) / 4);padding:10px 10px 24px;border:1px solid #e6e8ec;border-radius:16px;background:#fff;
+  box-shadow:0 6px 18px rgba(17,17,17,.04)}
+.sv-ph{aspect-ratio:187/169;border-radius:14px;overflow:hidden;background:#e9edf2}
+.sv-ph img{width:100%;height:100%;object-fit:cover}
+.sv-prod li>div{padding:18px 12px 0}
+.sv-prod small{display:block;font-size:12.5px;font-weight:800;color:var(--blue);margin-bottom:4px}
+.sv-prod b{display:block;font-size:18px;font-weight:800;letter-spacing:-.02em}
+.sv-prod p{font-size:14.5px;line-height:1.6;color:var(--dim);margin-top:8px}
+
+/* 단계 흐름: 카드 사이 화살표 */
+.sv-flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:40px}
+.sv-flow>li{position:relative;padding:28px 26px 32px;border:1px solid #e3e6ea;border-radius:16px;background:#fff;
+  box-shadow:0 6px 18px rgba(17,17,17,.04)}
+.sv-flow>li+li::before{content:'';position:absolute;left:-29px;top:50%;width:18px;height:18px;margin-top:-9px;
+  background:center/contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a94a6' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12h15M13 6l6 6-6 6'/%3E%3C/svg%3E")}
+.sv-flow.soft>li{background:#f3f5f8;border-color:#f3f5f8;box-shadow:none}
+.sv-ic{flex:none;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#12192A;color:#8fc2ff}
+.sv-ic .ico{width:26px;height:26px}
+.sv-step-h{display:flex;align-items:center;gap:20px}
+.sv-step-h small{display:block;font-size:13px;font-weight:800;color:var(--blue)}
+.sv-step-h b{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em}
+.sv-flow h4{font-size:19px;margin:22px 0 10px}
+.sv-flow p{font-size:15px;line-height:1.6;color:var(--dim)}
+.sv-check{margin-top:22px;padding-top:20px;border-top:1px solid #e3e6ea}
+.sv-check li{display:flex;align-items:center;gap:10px;font-size:16px;line-height:1.5;padding:5px 0}
+.sv-check .ico{width:16px;height:16px;stroke-width:2.2;color:var(--blue)}
+/* 번호가 큰 단계 카드(구축 단계) */
+.sv-num{display:flex;align-items:flex-start;justify-content:space-between}
+.sv-num em{font-style:normal;font-size:36px;font-weight:800;letter-spacing:-.02em;color:var(--blue);line-height:1}
+
+/* 페이지 끝 공통 배너 */
+.sv-banner{margin-block:130px 80px}
+.sv-banner img{width:100%}
+
+/* ---------- 회사소개 ---------- */
+.ab-need{margin-top:110px;background:#f3f5f8;padding-block:80px}
+.ab-need h3{font-size:clamp(24px,2.2vw,32px);letter-spacing:-.025em;margin-bottom:20px}
+.ab-need p{font-size:16px;line-height:1.85;color:#333;max-width:980px}
+.ab-chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.ab-chips li{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;
+  background:#fff;border:1px solid #e3e6ea;font-size:14.5px;font-weight:700}
+.ab-chips .ico{width:18px;height:18px;color:var(--blue)}
+.ab-why{position:relative;overflow:hidden;background:#12192A;color:#fff;padding-block:100px 110px}
+/* 오른쪽 현장 사진: 원본 이미지의 글자 없는 오른쪽 부분만 보이게 하고 왼쪽은 남색으로 흐린다 */
+.ab-why::before{content:'';position:absolute;inset:0 0 0 auto;width:34%;
+  background:url(../images/sub/about-why.webp) center/cover no-repeat;opacity:.9}
+.ab-why::after{content:'';position:absolute;inset:0 0 0 auto;width:34%;background:linear-gradient(90deg,#12192A,rgba(18,25,42,0) 60%)}
+.ab-why .wrap{position:relative;z-index:1}
+.ab-why .kicker{display:block;color:#6db2ff;margin-bottom:14px}
+.ab-why h2{color:#fff;margin-bottom:14px}
+.ab-why .lead{font-size:16px;color:rgba(255,255,255,.7)}
+.ab-why ul{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));max-width:min(1100px,68%);margin-top:64px}
+.ab-why li{padding:6px 16px;text-align:center;border-left:1px solid rgba(110,150,220,.45)}
+.ab-why li:first-child{border-left:0}
+.ab-why li .ico{width:44px;height:44px;stroke-width:1.4;margin:0 auto 22px}
+.ab-why b{display:block;font-size:19px;font-weight:800;margin-bottom:12px}
+.ab-why p{font-size:14px;line-height:1.65;color:rgba(255,255,255,.72);text-wrap:balance}
+.ab-why p br{display:none}
+.ab-steps{margin-block:110px 130px}
+.ab-steps>h3{font-size:clamp(24px,2.2vw,32px);line-height:1.5;letter-spacing:-.025em}
+.ab-steps .sv-grp{color:var(--black);font-size:18px;margin:44px 0 18px}
+
+/* ---------- AI 솔루션 ---------- */
+.ai-risk{text-align:center}
+.ai-risk h3{font-size:clamp(24px,2.2vw,32px);letter-spacing:-.025em;margin-bottom:44px}
+.ai-risk h3 em{font-style:normal;color:#1f7ae0}
+.ai-risk ul{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;max-width:1080px;margin:0 auto}
+.ai-risk img{width:100%;aspect-ratio:.6;object-fit:cover;object-position:left top}
+.ai-event{display:grid;justify-items:center;gap:28px}
+.ai-event>img{width:min(100%,760px);border-radius:12px}
+.ai-event .sv-flow{width:min(100%,760px)}
+
+/* ---------- 건설공정 ---------- */
+.pr-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.55fr);gap:56px;align-items:start}
+.pr-key li{display:flex;align-items:center;gap:18px;padding:14px 20px;margin-bottom:14px;border-radius:12px;
+  background:#12192A;color:#fff;font-size:16.5px;font-weight:800}
+.pr-key .sv-ic{width:46px;height:46px;background:#1f6fd1;color:#fff}
+.pr-key .ico{width:22px;height:22px}
+
+/* ---------- 위치 관제 ---------- */
+.lc-flow{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);gap:16px;align-items:end}
+.lc-flow>.ico{align-self:end;margin-bottom:34px;color:#8a94a6;justify-self:center}
+.lc-flow figure{margin:0;display:grid;gap:24px}
+.lc-flow figure img{width:100%;border-radius:12px}
+.lc-flow figcaption{display:flex;align-items:center;gap:18px;padding:18px 24px;border-radius:12px;
+  font-size:16px;font-weight:700;line-height:1.6;border:1px solid #e3e6ea;background:#fff}
+.lc-flow figure+.ico+figure figcaption{background:#12192A;border-color:#12192A;color:#fff}
+.lc-flow .sv-ic{background:#1f6fd1;color:#fff}
+
+/* ---------- 반응형 ---------- */
+@media (max-width:1190px){
+  .sv-prod li{width:calc((100% - 40px) / 3)}
+  .ab-why ul{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:40px}
+  .ab-why li:nth-child(4){border-left:0}
+}
+@media (max-width:1024px){
+  .sv-intro{grid-template-columns:1fr;gap:36px}
+  .sv-eff{grid-auto-flow:row;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sv-flow{grid-auto-flow:row;grid-template-columns:1fr;gap:34px}
+  .sv-flow>li+li::before{left:50%;top:-26px;margin:0 0 0 -9px;transform:rotate(90deg)}
+  .ab-why::before,.ab-why::after{width:100%;opacity:.22}
+  .ab-why ul{max-width:none}
+  .ab-why::after{display:none}
+  .pr-wrap,.lc-flow{grid-template-columns:1fr}
+  .lc-flow>.ico{transform:rotate(90deg);margin:0}
+  .ai-risk ul{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:20px}
+}
+@media (max-width:560px){
+  .sv{padding-top:44px}
+  .sv-sec,.ab-steps{margin-top:80px}
+  .sv-h{font-size:21px;margin-bottom:22px}
+  .sv-intro h3{font-size:22px}
+  .sv-intro p,.ab-need p{font-size:15px;line-height:1.75}
+  .sv-intro p br{display:none}
+  .sv-eff{grid-template-columns:1fr;gap:10px}
+  .sv-eff li{padding:20px 20px 22px}
+  .sv-eff b{margin-bottom:8px}
+  .sv-eff p{font-size:15px}
+  .sv-eff p br{display:none}
+  /* 제품 카드는 2열로 작게 */
+  .sv-prod{gap:10px}
+  .sv-prod li{width:calc((100% - 10px) / 2);padding:6px 6px 16px;border-radius:12px}
+  .sv-ph{border-radius:9px}
+  .sv-prod li>div{padding:12px 6px 0}
+  .sv-prod small{font-size:11px}
+  .sv-prod b{font-size:15px}
+  .sv-prod p{font-size:12.5px;line-height:1.5}
+  .sv-grp{margin:34px 0 14px}
+  .sv-banner{margin-top:90px}
+  .ab-need{margin-top:80px;padding-block:56px}
+  .ab-why{padding-block:70px}
+  .ab-why ul{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:44px}
+  .ab-why li{padding:4px 12px;border-left:0}
+  .ab-why li:nth-child(2n){border-left:1px solid rgba(110,150,220,.45)}
+  .ab-why li:last-child{grid-column:1/-1;border-left:0}
+  .ab-why li .ico{width:36px;height:36px;margin-bottom:14px}
+  .ab-why b{font-size:17px}
+  .ab-why p{font-size:13px}
+  .ai-risk ul{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ai-risk h3{font-size:22px;margin-bottom:28px}
+  .sv-step-h b{font-size:20px}
+  .lc-flow figcaption{font-size:14.5px;padding:16px 18px}
+}
