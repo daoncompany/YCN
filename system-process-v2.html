@@ -7,7 +7,7 @@
 <title>건설공정 관리 시스템 | (주)와이씨앤 — 시안 V2</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="css/style.css?v=202610301509">
-<link rel="stylesheet" href="css/sub-v2.css?v=202611271">
+<link rel="stylesheet" href="css/sub-v2.css?v=202611272">
 </head>
 <body>
 
@@ -27,7 +27,20 @@
   <div class="sub-head"><span class="kicker">Construction Process Management</span><h2>건설공정 관리 시스템</h2></div>
   <div class="sv-intro">
     <div><h3>3D 공정 시각화, <br>계획부터 안전까지 한 번에 관리합니다</h3><p>디지털 트윈 기반 3D 현장에서 공정 진행 현황을 실시간으로 모니터링하고, <br>계획 대비 실제 공정을 분석합니다. <br>현장 데이터를 연계해 공정 지연과 작업 동선의 위험 요소를 사전에 예측하고, <br>효율적인 공정 운영과 안전관리를 지원합니다.</p></div>
-    <img src="images/sub/proc-gantt.webp" alt="공정 현황 · 계획 대비 실적 차트 — 토공, 골조(지연), 설비, 마감의 주차별 계획과 실적">
+    <figure class="pr-chart" aria-label="공정 현황 · 계획 대비 실적 차트">
+      <b>공정 현황 · 계획 대비 실적</b>
+      <div class="pr-body">
+        <div class="pr-grid">
+          <span></span><div class="pr-weeks"><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span><span>W8</span></div>
+          <span>토공</span><div class="pr-track"><i style="--s:0;--e:2.4"></i><i style="--s:0;--e:2.4"></i></div>
+          <span>골조</span><div class="pr-track"><i style="--s:1.6;--e:4.8"></i><i class="late" style="--s:2;--e:4"></i><em style="--x:4.8">지연</em></div>
+          <span>설비</span><div class="pr-track"><i style="--s:3.6;--e:6.4"></i><i style="--s:4;--e:5"></i></div>
+          <span>마감</span><div class="pr-track"><i style="--s:5.2;--e:8"></i></div>
+        </div>
+        <span class="pr-today"></span>
+      </div>
+      <div class="pr-legend"><span>계획</span><span>실적</span><span>오늘</span></div>
+    </figure>
   </div>
   <section class="sv-sec">
     <h3 class="sv-h">도입 효과</h3>

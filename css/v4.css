@@ -181,6 +181,14 @@
 .s3-v2 .s3-txt .s3-split-h b{color:#fff}
 .s3-banner{padding-bottom:110px}
 .s3-banner img{display:block;width:100%}
+/* 하위 페이지 V2 와 같은 규칙: 소개 사진 폭 최대 660px·16:9(기존보다 1.2배), 제목·본문 크기, 소제목 왼쪽 밑줄 */
+@media (min-width:1025px){.s3-v2 .s3-split,.s3-v2 .s3-split:has(.s3-split-h){max-width:var(--wrap);grid-template-columns:minmax(0,1fr) min(660px,48%);gap:64px}}
+.s3-v2 .s3-card{aspect-ratio:16/9;overflow:hidden}
+.s3-v2 .s3-card .ph{height:100%;object-fit:cover}
+.s3-v2 .s3-txt .s3-split-h{font-size:clamp(24px,2vw,30px);line-height:1.4;letter-spacing:-.025em;margin-bottom:22px}
+.s3-v2 .s3-txt p{font-size:16px;line-height:1.85}
+.s3-v2 .v4-eff .s3-grid-h{display:inline-block;text-align:left;font-size:24px;letter-spacing:-.02em;padding-bottom:8px;border-bottom:2px solid #4a9eff;margin-bottom:32px}
+.s3-v2 .v4-eff .s3-num{font-size:14px;margin-bottom:14px}
 
 /* ---------- 반응형 ---------- */
 @media (max-width:1190px){

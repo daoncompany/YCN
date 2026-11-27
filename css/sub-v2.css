@@ -4,10 +4,11 @@
 .sv img{display:block;max-width:100%}
 
 /* 소개: 왼쪽 글, 오른쪽 사진 */
-.sv-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:64px;align-items:center}
+/* 소개 사진 크기는 모든 하위 페이지(3SZONE V2 포함) 같게: 폭 최대 660px, 16:9 */
+.sv-intro{display:grid;grid-template-columns:minmax(0,1fr) min(660px,48%);gap:64px;align-items:center}
 .sv-intro h3{font-size:clamp(24px,2vw,30px);line-height:1.4;letter-spacing:-.025em;margin-bottom:22px}
 .sv-intro p{font-size:16px;line-height:1.85;color:#333}
-.sv-intro img{width:100%;border-radius:12px}
+.sv-intro>img,.sv-intro>figure{width:100%;aspect-ratio:16/9;border-radius:12px;object-fit:cover;margin:0}
 
 /* 소제목: 아래 파란 줄 */
 .sv-sec{margin-top:110px}
@@ -29,7 +30,11 @@
 .sv-prod li{width:calc((100% - 60px) / 4);padding:10px 10px 24px;border:1px solid #e6e8ec;border-radius:16px;background:#fff;
   box-shadow:0 6px 18px rgba(17,17,17,.04)}
 .sv-ph{aspect-ratio:187/169;border-radius:14px;overflow:hidden;background:#e9edf2}
+.sv-ph{position:relative;display:grid;place-items:center}
 .sv-ph img{width:100%;height:100%;object-fit:cover}
+/* 사진이 없는 칸 / 화질이 낮은 사진 표시 */
+.sv-ph:empty::after,.sv-ph.lq::after{content:'사진필요';font-size:15px;font-weight:800;letter-spacing:-.01em;color:#8a94a6}
+.sv-ph.lq::after{content:'고화질필요';position:absolute;inset:0;display:grid;place-items:center;color:#fff;background:rgba(18,25,42,.62)}
 .sv-prod li>div{padding:18px 12px 0}
 .sv-prod small{display:block;font-size:12.5px;font-weight:800;color:var(--blue);margin-bottom:4px}
 .sv-prod b{display:block;font-size:18px;font-weight:800;letter-spacing:-.02em}
@@ -93,12 +98,46 @@
 .ai-risk h3{font-size:clamp(24px,2.2vw,32px);letter-spacing:-.025em;margin-bottom:44px}
 .ai-risk h3 em{font-style:normal;color:#1f7ae0}
 .ai-risk ul{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;max-width:1080px;margin:0 auto}
-.ai-risk img{width:100%;aspect-ratio:.6;object-fit:cover;object-position:left top}
+.ai-risk li>img{width:100%;aspect-ratio:166/212;object-fit:cover}
+.ai-risk li>span{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:15px;font-weight:800;letter-spacing:-.02em;text-align:left}
+.ai-risk li>span img{width:26px;height:auto}
 .ai-event{display:grid;justify-items:center;gap:28px}
-.ai-event>img{width:min(100%,760px);border-radius:12px}
-.ai-event .sv-flow{width:min(100%,760px)}
+.ai-event>*{width:min(100%,900px)}
+.ai-det{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 30%;overflow:hidden;border-radius:16px;
+  background:linear-gradient(120deg,#f6f9fd 0%,#e8f0fa 100%)}
+.ai-det>div{padding:44px 32px 44px 44px}
+.ai-det small{display:block;font-size:12px;font-weight:800;letter-spacing:.14em;color:#1f6fd1;margin-bottom:10px}
+.ai-det h3{font-size:clamp(24px,2.2vw,32px);letter-spacing:-.025em}
+.ai-det h3 em{font-style:normal;color:#1f6fd1}
+.ai-det p{font-size:15px;color:#555;margin:8px 0 26px}
+.ai-det ul{display:grid;gap:10px}
+.ai-det li{display:grid;grid-template-columns:44px 92px minmax(0,1fr);align-items:center;gap:14px;padding:12px 18px;border-radius:12px;
+  background:rgba(255,255,255,.85);box-shadow:0 4px 14px rgba(31,111,209,.06)}
+.ai-det li>span{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#e8f0fa;color:#1f6fd1}
+.ai-det li>span .ico{width:22px;height:22px}
+.ai-det li>b{font-size:15px;font-weight:800;padding-left:14px;border-left:1px solid #d5dce6}
+.ai-det li>i{font-style:normal;display:flex;flex-wrap:wrap;gap:6px}
+.ai-det li>i em{font-style:normal;font-size:13px;font-weight:600;padding:4px 12px;border-radius:999px;background:#eef2f7;color:#333}
+.ai-det>img{width:100%;height:100%;object-fit:cover;object-position:left center}
 
 /* ---------- 건설공정 ---------- */
+.pr-chart{display:flex;flex-direction:column;justify-content:center;padding:26px 28px;border:1px solid #e3e6ea;border-radius:12px;background:#fff}
+.pr-chart b{font-size:15px;font-weight:800;margin-bottom:14px}
+.pr-grid{display:grid;grid-template-columns:52px minmax(0,1fr);row-gap:14px;font-size:14px;font-weight:800}
+.pr-weeks{display:grid;grid-template-columns:repeat(8,1fr);text-align:center;font-size:12px;font-weight:600;color:#8a94a6}
+.pr-track{position:relative;height:22px}
+.pr-track i{position:absolute;left:calc(var(--s) / 8 * 100%);width:calc((var(--e) - var(--s)) / 8 * 100%);height:7px;border-radius:9px;background:#d7dde6;top:2px}
+.pr-track i+i{top:12px;background:#12192A}
+.pr-track i.late{background:#f0a83a}
+.pr-track em{position:absolute;left:calc(var(--x) / 8 * 100%);top:-3px;transform:translateX(-100%);font-style:normal;font-size:11.5px;font-weight:800;
+  padding:2px 9px;border-radius:999px;background:#f0a83a;color:#12192A}
+.pr-today{position:absolute;left:calc(52px + (100% - 52px) * 4.8 / 8);top:0;bottom:0;border-left:1.5px dashed #e0474c}
+.pr-body{position:relative}
+.pr-legend{display:flex;gap:22px;margin-top:18px;font-size:13px;color:#666}
+.pr-legend span{display:inline-flex;align-items:center;gap:7px}
+.pr-legend span::before{content:'';width:16px;height:6px;border-radius:9px;background:#d7dde6}
+.pr-legend span:nth-child(2)::before{background:#12192A}
+.pr-legend span:nth-child(3)::before{width:18px;height:0;border-top:1.5px dashed #e0474c;background:none}
 .pr-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.55fr);gap:56px;align-items:start}
 .pr-key li{display:flex;align-items:center;gap:18px;padding:14px 20px;margin-bottom:14px;border-radius:12px;
   background:#12192A;color:#fff;font-size:16.5px;font-weight:800}
@@ -132,6 +171,9 @@
   .pr-wrap,.lc-flow{grid-template-columns:1fr}
   .lc-flow>.ico{transform:rotate(90deg);margin:0}
   .ai-risk ul{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:20px}
+  .ai-det{grid-template-columns:1fr}
+  .ai-det>img{display:none}
+  .ai-det>div{padding:32px 24px}
 }
 @media (max-width:560px){
   .sv{padding-top:44px}
@@ -168,4 +210,12 @@
   .ai-risk h3{font-size:22px;margin-bottom:28px}
   .sv-step-h b{font-size:20px}
   .lc-flow figcaption{font-size:14.5px;padding:16px 18px}
+  .ai-det li{grid-template-columns:36px minmax(0,1fr);gap:10px;padding:12px}
+  .ai-det li>span{width:36px;height:36px}
+  .ai-det li>b{border:0;padding:0}
+  .ai-det li>i{grid-column:1/-1}
+  .pr-chart{padding:20px 16px}
+  .pr-grid{grid-template-columns:40px minmax(0,1fr)}
+  .pr-today{left:calc(40px + (100% - 40px) * 4.8 / 8)}
+  .ai-risk li>span{font-size:13.5px}
 }
