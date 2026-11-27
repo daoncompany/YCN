@@ -1,0 +1,10 @@
+/* V2 시안 공통 레이아웃 토큰 — V4 메인과 모든 V2 하위 페이지가 이 너비만 쓴다.
+   style.css 다음에 불러와 --wrap 을 V2 페이지에서만 덮어쓴다(기존 사이트는 그대로). */
+:root{
+  --wrap:1440px;     /* 내용 칸 최대 폭(좌우 여백 40px 포함) → 본문 1360px. 헤더·푸터·모든 섹션 공통 */
+  --w-narrow:1080px; /* 가운데로 모아 보여 주는 블록(3SZONE 도식, AI 위험·감지 항목) */
+  --w-text:980px;    /* 긴 문단 한 줄 최대 길이 */
+}
+/* 고객사 로고도 다른 섹션과 같은 칸 안에(기존엔 화면 끝까지) */
+.partner .wrap{max-width:var(--wrap);padding-left:40px;padding-right:40px}
+@media (max-width:1024px){.partner .wrap{padding-left:24px;padding-right:24px}}
