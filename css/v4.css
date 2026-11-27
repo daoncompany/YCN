@@ -110,7 +110,7 @@
 .v4-zone{padding-block:120px;overflow:hidden;
   background:radial-gradient(50% 45% at 50% 60%,rgba(0,47,115,.07),rgba(255,255,255,0) 70%)}
 .v4-zone h2{text-align:center;margin-bottom:24px}
-.v4-dia{position:relative;max-width:calc(var(--w-narrow) + 80px);aspect-ratio:10/7}  /* 좌우 여백 40px 포함 → 도식 1080px */
+.v4-dia{position:relative;max-width:1000px;aspect-ratio:10/7}
 .v4-core{position:absolute;inset:0;display:grid;place-items:center}
 .v4-core>*{grid-area:1/1}
 .v4-core i{border-radius:50%;border:1px solid rgba(0,47,115,.14)}
