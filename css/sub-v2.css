@@ -39,6 +39,19 @@
 .sv-prod small{display:block;font-size:12.5px;font-weight:800;color:var(--blue);margin-bottom:4px}
 .sv-prod b{display:block;font-size:18px;font-weight:800;letter-spacing:-.02em}
 .sv-prod p{font-size:14.5px;line-height:1.6;color:var(--dim);margin-top:8px}
+/* 제품 구성 B안: 테마별 한 줄 + 가로 넘김 */
+.b-row{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;padding-block:32px;border-top:1px solid #e6e8ec}
+.b-row:last-child{border-bottom:1px solid #e6e8ec}
+.b-head small{display:block;font-size:13px;font-weight:800;color:var(--blue);margin-bottom:6px}
+.b-head b{display:block;font-size:21px;font-weight:800;letter-spacing:-.02em;line-height:1.35}
+.b-nav{display:flex;gap:8px;margin-top:18px}
+.b-nav button{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;border:1px solid #d8dde4;background:#fff;color:#555;font-size:18px;cursor:pointer}
+.b-nav button:disabled{opacity:.35;cursor:default}
+.b-row:not(.more) .b-nav{display:none}
+.sv-prod.b-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 60px) / 4);flex-wrap:nowrap;
+  overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px 2px 16px;margin:-2px -2px -16px}
+.b-track::-webkit-scrollbar{display:none}
+.b-track li{width:auto;scroll-snap-align:start}
 
 /* 단계 흐름: 카드 사이 화살표 */
 .sv-flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:40px}
@@ -157,6 +170,8 @@
 /* ---------- 반응형 ---------- */
 @media (max-width:1190px){
   .sv-prod li{width:calc((100% - 40px) / 3)}
+  .sv-prod.b-track{grid-auto-columns:calc((100% - 40px) / 3)}
+  .b-row{grid-template-columns:200px minmax(0,1fr);gap:24px}
   .ab-why ul{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:40px}
   .ab-why li:nth-child(4){border-left:0}
 }
@@ -196,6 +211,13 @@
   .sv-prod b{font-size:15px}
   .sv-prod p{font-size:12.5px;line-height:1.5}
   .sv-grp{margin:34px 0 14px}
+  .b-row{grid-template-columns:1fr;gap:14px;padding-block:24px}
+  .b-head{display:flex;align-items:baseline;gap:10px}
+  .b-head small{margin:0}
+  .b-head b{font-size:18px}
+  .b-row .b-nav{display:none}
+  .sv-prod.b-track{grid-auto-columns:46%;gap:10px}
+  .b-track li{width:auto}
   .sv-banner{margin-top:90px}
   .ab-need{margin-top:80px;padding-block:56px}
   .ab-why{padding-block:70px}

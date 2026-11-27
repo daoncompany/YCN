@@ -99,7 +99,28 @@ function initHistoryNav() {
   sync();
 }
 
+// 제품 구성 B안: 카드가 넘치는 줄만 화살표를 보이고, 한 장씩 넘긴다
+function initProdRows() {
+  document.querySelectorAll('.b-row').forEach(row => {
+    const track = row.querySelector('.b-track');
+    const [prev, next] = row.querySelectorAll('.b-nav button');
+    const sync = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      row.classList.toggle('more', max > 2);
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= max - 2;
+    };
+    const step = d => track.scrollBy({ left: d * track.firstElementChild.offsetWidth, behavior: 'smooth' });
+    prev.addEventListener('click', () => step(-1));
+    next.addEventListener('click', () => step(1));
+    track.addEventListener('scroll', sync, { passive: true });
+    addEventListener('resize', sync);
+    sync();
+  });
+}
+
 includePartials().then(() => {
+  initProdRows();
   initGnb();
   initHero();
   initScrollHeader();
