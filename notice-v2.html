@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>공지사항 | (주)와이씨앤 — 시안 V2</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/style.css?v=202610301509">
+<link rel="stylesheet" href="css/v2-tokens.css?v=202611281">
+</head>
+<body>
+
+<div data-include="partials/header-v2.html"></div>
+<nav class="pills wrap">
+      <a href="notice-v2.html" class="on">공지사항</a>
+      <a href="location-v2.html">오시는 길</a>
+      <a href="inquiry-v2.html">문의하기</a>
+</nav>
+
+<section class="sub-body wrap">
+  <div class="sub-head">
+    <span class="kicker">Notice</span>
+    <h2>공지사항</h2>
+    <p>(주)와이씨앤의 새로운 소식을 전해드립니다.</p>
+  </div>
+  <table class="board">
+    <thead>
+      <tr><th style="width:90px">번호</th><th>제목</th><th style="width:110px">작성자</th><th style="width:140px">작성일</th></tr>
+    </thead>
+    <tbody id="notice-list">
+      <tr><td colspan="4" class="empty">불러오는 중…</td></tr>
+    </tbody>
+  </table>
+
+  <div class="board-foot">
+    <a href="admin.html" class="btn">글쓰기</a>
+  </div>
+</section>
+
+<div data-include="partials/footer-v2.html"></div>
+
+<script src="js/notice.js?v=202610301509"></script>
+<script src="js/script.js?v=202610301509"></script>
+</body>
+</html>
